@@ -21,7 +21,7 @@ It is not necessary to insert data into the room database as web data can be obs
 4. [Room](https://developer.android.com/training/data-storage/room)
 5. [Flow](https://developer.android.com/kotlin/flow)
 6. [Live Data](https://developer.android.com/topic/libraries/architecture/livedata) 
-7. [Coroutine](https://developer.android.com/kotlin/coroutines) 
+7. [Coroutines](https://developer.android.com/kotlin/coroutines) 
 
 ## Contributing
 You can fork the repository and create a pull request if you have any suggestions that could make this better. You can also open a new issue with the tag "enhancement". If you like the project, please give it a star! Once again, thank you!
