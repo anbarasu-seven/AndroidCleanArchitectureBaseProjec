@@ -2,12 +2,21 @@ package com.example.mvvmhilt.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.mvvmhilt.BuildConfig
+import com.example.mvvmhilt.apis.ModuleSpecificApis
+import com.example.mvvmhilt.models.Constants
 import com.example.mvvmhilt.room.Database
+import com.example.mvvmhilt.utils.Network
+import com.example.mvvmhilt.utils.NetworkConnectivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -34,10 +43,35 @@ object AppModule {
     @Provides
     fun provideDao(database: Database) = database.getDao()
 
-    /**
-     * Provide NetworkQueue class applicationContext as performing network requests requires a context
-     */
     @Singleton
     @Provides
-    fun provideNetworkQueue(@ApplicationContext app: Context) = NetworkQueue(app)
+    fun provideGithubService(okHttpClient: OkHttpClient): ModuleSpecificApis {
+        return Retrofit.Builder()
+            .baseUrl(Constants.WEB_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+            .create(ModuleSpecificApis::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+    } else {
+        OkHttpClient
+            .Builder()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkConnectivity(@ApplicationContext context: Context): NetworkConnectivity {
+        return Network(context)
+    }
+
 }

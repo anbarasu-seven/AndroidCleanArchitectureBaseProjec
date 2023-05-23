@@ -10,8 +10,12 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "sample_table", indices = [Index(value = ["id"], unique = true)])
 data class NetworkData(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
-    val name:String,
-    val craft:String
+    val name: String,
+    val craft: String
 )
+
+data class UserResponse(val message: String, val number: Int, val people: ArrayList<NetworkData>)
+
+data class ErrorResponse(val status: String, val failureMessage: String?)

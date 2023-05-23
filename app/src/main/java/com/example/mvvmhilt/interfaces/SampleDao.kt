@@ -12,7 +12,7 @@ interface SampleDao {
 
     //REPLACE will replace the old data if it has the same key
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(data: NetworkData)
+    fun insert(data: ArrayList<NetworkData>)
 
     // A FlowData stream from the DB to handle live continuous data
     @Query("SELECT * FROM sample_table ORDER BY id ASC")

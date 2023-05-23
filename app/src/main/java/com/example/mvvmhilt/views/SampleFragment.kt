@@ -59,12 +59,16 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
     }
 
     private fun observerData() {
+
+        //Set observer for webData
+        sampleViewModel.errorData.observe(viewLifecycleOwner) {
+           showToast(it!!)
+        }
+
         //Set observer for webData
         sampleViewModel.webData.observe(viewLifecycleOwner) {
             Timber.d("It is:%s", it)
-            it.forEach { data ->
-                sampleViewModel.insertData(data)
-            }
+            sampleViewModel.insertData(it?.people!!)
         }
 
         binding?.testGetButton?.setOnClickListener {

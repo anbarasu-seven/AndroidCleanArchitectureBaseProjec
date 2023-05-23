@@ -145,6 +145,17 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    def retrofit = "2.9.0"
+    def moshiVersion = "1.11.0"
+    def okhttp_logging_interceptor = "4.10.0"
+    implementation  "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation  "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation  "com.squareup.retrofit2:retrofit-mock:$retrofit"
+    implementation  "com.squareup.retrofit2:converter-moshi:$retrofit"
+    //implementation  "com.squareup.okhttp:logging-interceptor:$retrofit"
+    implementation    "com.squareup.moshi:moshi:$moshiVersion"
+    implementation  "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor"
 }
 
 // Allow references to generated code
