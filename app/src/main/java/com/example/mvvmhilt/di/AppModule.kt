@@ -1,4 +1,4 @@
-package com.example.mvvmhilt
+package com.example.mvvmhilt.di
 
 import android.content.Context
 import androidx.room.Room
@@ -39,5 +39,5 @@ object AppModule {
      */
     @Singleton
     @Provides
-    fun provideNetworkQueue(@ApplicationContext app:Context) = NetworkQueue(app)
+    fun provideNetworkQueue(@ApplicationContext app: Context) = NetworkQueue(app)
 }

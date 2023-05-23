@@ -1,4 +1,4 @@
-package com.example.mvvmhilt
+package com.example.mvvmhilt.di
 
 import android.content.Context
 import com.android.volley.Request

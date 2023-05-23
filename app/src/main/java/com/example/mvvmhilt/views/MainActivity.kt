@@ -1,12 +1,11 @@
-package com.example.mvvmhilt
+package com.example.mvvmhilt.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.mvvmhilt.databinding.ActivityMainBinding
 import com.example.mvvmhilt.extensions.showToast
-import com.example.mvvmhilt.views.SampleFragment
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
      * Function to change fragment
      * @param fragment class name
      */
-    private fun changeFragment(fragment:Fragment){
+    private fun changeFragment(fragment: Fragment){
         supportFragmentManager.commit {
             add(binding.containerFragment.id,fragment::class.java,null)
         }

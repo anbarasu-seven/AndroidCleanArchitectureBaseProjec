@@ -3,7 +3,7 @@ package com.example.mvvmhilt.repository
 import androidx.lifecycle.MutableLiveData
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
-import com.example.mvvmhilt.NetworkQueue
+import com.example.mvvmhilt.di.NetworkQueue
 import com.example.mvvmhilt.interfaces.SampleDao
 import com.example.mvvmhilt.models.NetworkData
 import kotlinx.coroutines.Dispatchers
