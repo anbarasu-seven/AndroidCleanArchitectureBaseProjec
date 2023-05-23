@@ -15,7 +15,7 @@ interface SampleDao {
     fun insert(data: ArrayList<NetworkData>)
 
     // A FlowData stream from the DB to handle live continuous data
-    @Query("SELECT * FROM sample_table ORDER BY id ASC")
+    @Query("SELECT * FROM sample_table ORDER BY name ASC")
     fun getOrderedNetworkDataFlow(): Flow<List<NetworkData>>
 
     //Delete data from table

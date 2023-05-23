@@ -8,10 +8,9 @@ import androidx.room.PrimaryKey
  * Sample data class
  * Ensure each entry is unique
  */
-@Entity(tableName = "sample_table", indices = [Index(value = ["id"], unique = true)])
+@Entity(tableName = "sample_table")
 data class NetworkData(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    @PrimaryKey
     val name: String,
     val craft: String
 )
