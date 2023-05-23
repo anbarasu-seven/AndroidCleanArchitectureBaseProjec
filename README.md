@@ -1,4 +1,4 @@
-# android-mvvm-hilt-volley
+# android-mvvm-hilt-retrofit-coroutine
 
 In this repository, you'll find boilerplate code to get started with your Android project using Hilt and MVVM. In addition, an example is provided to show you how to use volley with Hilt to execute network requests to fetch data and populate the room database. Data is then fetched from the database and displayed as a list in recyclerview using flow and live data.
 
