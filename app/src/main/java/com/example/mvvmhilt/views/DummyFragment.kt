@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmhilt.R
 import com.example.mvvmhilt.adapter.SampleAdapter
+import com.example.mvvmhilt.databinding.DummyFragmentBinding
 import com.example.mvvmhilt.databinding.FragmentSampleBinding
 import com.example.mvvmhilt.extensions.showToast
 import com.example.mvvmhilt.viewmodels.SampleViewModel
@@ -18,10 +19,9 @@ import timber.log.Timber
 /**
  * A simple [Fragment] subclass.
 */
-class SampleFragment : Fragment(R.layout.fragment_sample) {
+class DummyFragment : Fragment(R.layout.dummy_fragment) {
 
-    private val sampleViewModel: SampleViewModel by activityViewModels()
-    private var binding:FragmentSampleBinding? = null
+    private var binding:DummyFragmentBinding? = null
 
     /**
      * Inflate the layout for this fragment and set [binding]
@@ -31,7 +31,7 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSampleBinding.inflate(inflater,container,false)
+        binding = DummyFragmentBinding.inflate(inflater,container,false)
         return binding!!.root
     }
 
@@ -40,26 +40,8 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showToast("FragmentSampleTest")
 
-        //Set observer for webData
-        sampleViewModel.webData.observe(viewLifecycleOwner){
-            Timber.d("It is:%s", it)
-            it.forEach { data->
-                sampleViewModel.insertData(data)
-            }
-        }
-
-        binding?.testGetButton?.setOnClickListener {
-            sampleViewModel.performNetworkRequest()
-        }
-
-        binding?.testDelButton?.setOnClickListener {
-            sampleViewModel.deleteData()
-            showToast("Data deleted")
-        }
-
-        displayData()
+        //displayData()
     }
 
     /**
@@ -67,14 +49,7 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
      * Display data in recycle view
      */
     private fun displayData(){
-        sampleViewModel.networkData.observe(viewLifecycleOwner){
-            binding?.sampleRecyclerList?.apply {
-                layoutManager = LinearLayoutManager(requireContext(),GridLayoutManager.VERTICAL,false)
-                val recycleAdapter = SampleAdapter()
-                adapter = recycleAdapter
-                recycleAdapter.submitList(it)
-            }
-        }
+
     }
 
 }

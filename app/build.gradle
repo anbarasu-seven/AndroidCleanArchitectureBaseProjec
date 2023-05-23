@@ -9,7 +9,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.mvvmhiltsample"
+        applicationId "com.example.mvvmhilt"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -19,7 +19,8 @@ android {
     }
 
     signingConfigs {
-        debug {
+        //Enable signing config with signature file path
+        /*debug {
             keyAlias 'dummyAlias'
             keyPassword 'dummyPassword'
             storeFile file('path\\to\\file.jks')
@@ -30,7 +31,7 @@ android {
             keyPassword 'dummyPassword'
             storeFile file('path\\to\\file.jks')
             storePassword 'dummyStorePassword'
-        }
+        }*/
     }
 
     buildTypes {
@@ -53,7 +54,8 @@ android {
             debuggable true
 
             multiDexEnabled = true
-            signingConfig signingConfigs.debug
+            //enable for signing here
+            //signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules-release.pro'
         }
         release {
@@ -62,19 +64,19 @@ android {
             debuggable false
 
             multiDexEnabled = true
-            signingConfig signingConfigs.release
+            //enable for signing here
+            //signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules-release.pro'
         }
     }
 
+    flavorDimensions "default"
     productFlavors {
         demo {
-            dimension = "version"
             applicationIdSuffix = ".free"
             versionNameSuffix = "-free"
         }
         paid {
-            dimension = "version"
             applicationIdSuffix = ".paid"
             versionNameSuffix = "-paid"
         }
@@ -124,6 +126,25 @@ dependencies {
     //Live Data dependency
     def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    def nav_version = "2.5.3"
+
+    // Java language implementation
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
+
+    // Kotlin
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    // Feature module Support
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+
+    // Testing Navigation
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
+    // Jetpack Compose Integration
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 }
 
 // Allow references to generated code
