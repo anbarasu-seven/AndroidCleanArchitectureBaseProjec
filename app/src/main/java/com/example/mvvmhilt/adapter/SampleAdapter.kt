@@ -12,13 +12,13 @@ import com.example.mvvmhilt.models.NetworkData
 import dagger.hilt.android.scopes.FragmentScoped
 
 @FragmentScoped
-class SampleAdapter:ListAdapter<NetworkData, SampleAdapter.ViewHolder>(NetworkDataCallBack()) {
+class SampleAdapter : ListAdapter<NetworkData, SampleAdapter.ViewHolder>(NetworkDataCallBack()) {
 
-    class ViewHolder(view: View):RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val name: TextView = view.findViewById(R.id.nameTextView)
         private val craft: TextView = view.findViewById(R.id.craftTextView)
 
-        fun bind(nameData: String?,craftData: String?){
+        fun bind(nameData: String?, craftData: String?) {
             name.text = nameData
             craft.text = craftData
         }
@@ -38,11 +38,11 @@ class SampleAdapter:ListAdapter<NetworkData, SampleAdapter.ViewHolder>(NetworkDa
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position).name,getItem(position).craft)
+        holder.bind(getItem(position).name, getItem(position).craft)
     }
 }
 
-class NetworkDataCallBack:DiffUtil.ItemCallback<NetworkData>() {
+class NetworkDataCallBack : DiffUtil.ItemCallback<NetworkData>() {
 
     override fun areItemsTheSame(oldItem: NetworkData, newItem: NetworkData): Boolean {
         return oldItem == newItem
