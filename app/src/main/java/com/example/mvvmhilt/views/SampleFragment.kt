@@ -86,6 +86,7 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
          * Display data in recycle view
          */
         sampleViewModel.networkData.observe(viewLifecycleOwner) {
+            //this work as notifyDatasetChanged()
             recycleAdapter.submitList(it)
         }
     }
