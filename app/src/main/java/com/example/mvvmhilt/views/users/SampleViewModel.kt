@@ -7,39 +7,30 @@ import androidx.lifecycle.viewModelScope
 import com.example.mvvmhilt.data.models.Resource
 import com.example.mvvmhilt.data.models.UserData
 import com.example.mvvmhilt.data.models.UserResponse
-import com.example.mvvmhilt.repos.SampleRepoImpl
+import com.example.mvvmhilt.repos.SampleRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SampleViewModel @Inject constructor(private val sampleRepo: SampleRepoImpl) : ViewModel() {
-
-    //Get live network data records from room DB as Flow
-    var errorData: MutableLiveData<String?> = MutableLiveData()
+class SampleViewModel @Inject constructor(private val sampleRepo: SampleRepo) : ViewModel() {
 
     //Get live network data records from room DB as Flow
     var roomUsersData: LiveData<List<UserData>> = MutableLiveData()
 
     //Get data from web as live data and expose to view for observing
-    val apiUsersData: MutableLiveData<UserResponse?> = MutableLiveData()
+    val apiUsersData: MutableLiveData<Resource<UserResponse>> = MutableLiveData()
 
     init {
         roomUsersData = sampleRepo.observeRoomUsersData()
     }
-
     /**
      * Launch network request to fetch data
      */
     fun performNetworkRequest() = viewModelScope.launch {
         val response = sampleRepo.getUsersFromApi()
-        if (response is Resource.Success) {
-            apiUsersData.postValue(response.data)
-        } else if (response is Resource.Error) {
-            val error = response as Resource.Error
-            errorData.postValue(error.message)
-        }
+        apiUsersData.postValue(response)
     }
 
     /**

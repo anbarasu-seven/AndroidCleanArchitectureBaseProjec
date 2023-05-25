@@ -6,6 +6,9 @@ import com.example.mvvmhilt.BuildConfig
 import com.example.mvvmhilt.data.api.ModuleSpecificApis
 import com.example.mvvmhilt.data.models.Constants
 import com.example.mvvmhilt.data.room.Database
+import com.example.mvvmhilt.data.room.SampleDao
+import com.example.mvvmhilt.repos.SampleRepo
+import com.example.mvvmhilt.repos.SampleRepoImpl
 import com.example.mvvmhilt.utils.Network
 import com.example.mvvmhilt.utils.NetworkConnectivity
 import dagger.Module
@@ -41,7 +44,7 @@ object AppModule {
      */
     @Singleton
     @Provides
-    fun provideDao(database: Database) = database.getDao()
+    fun provideDao(database: Database): SampleDao = database.getDao()
 
     @Singleton
     @Provides
@@ -72,6 +75,12 @@ object AppModule {
     @Singleton
     fun provideNetworkConnectivity(@ApplicationContext context: Context): NetworkConnectivity {
         return Network(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSampleRepoInterface(apis: ModuleSpecificApis, dao: SampleDao): SampleRepo {
+        return SampleRepoImpl(apis, dao)
     }
 
 }

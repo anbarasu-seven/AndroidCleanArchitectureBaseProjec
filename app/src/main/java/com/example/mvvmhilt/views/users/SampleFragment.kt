@@ -9,10 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmhilt.R
+import com.example.mvvmhilt.data.models.Resource
+import com.example.mvvmhilt.data.models.UserData
 import com.example.mvvmhilt.databinding.FragmentSampleBinding
 import com.example.mvvmhilt.extensions.showToast
-import com.example.mvvmhilt.data.models.UserData
-import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -69,14 +69,16 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
     private fun observerData() {
 
         //Set observer for webData
-        sampleViewModel.errorData.observe(viewLifecycleOwner) {
-           showToast(it!!)
-        }
-
-        //Set observer for webData
         sampleViewModel.apiUsersData.observe(viewLifecycleOwner) {
-            Timber.d("It is:%s", it)
-            sampleViewModel.insertData(it?.people!!)
+            when (it) {
+                is Resource.Success -> {
+                    sampleViewModel.insertData(it.data?.people!!)
+                }
+                is Resource.Error -> {
+                    showToast(it.message!!)
+                }
+                else -> {}
+            }
         }
 
         /**
