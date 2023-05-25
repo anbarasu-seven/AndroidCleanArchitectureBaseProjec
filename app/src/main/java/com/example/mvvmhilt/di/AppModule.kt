@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.example.mvvmhilt.BuildConfig
 import com.example.mvvmhilt.data.api.ModuleSpecificApis
 import com.example.mvvmhilt.data.models.Constants
-import com.example.mvvmhilt.data.local.Database
+import com.example.mvvmhilt.data.room.Database
 import com.example.mvvmhilt.utils.Network
 import com.example.mvvmhilt.utils.NetworkConnectivity
 import dagger.Module

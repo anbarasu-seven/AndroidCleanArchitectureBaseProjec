@@ -1,8 +1,9 @@
 package com.example.mvvmhilt.repos
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mvvmhilt.data.api.ModuleSpecificApis
-import com.example.mvvmhilt.data.local.SampleDao
+import com.example.mvvmhilt.data.room.SampleDao
 import com.example.mvvmhilt.data.models.NetworkData
 import com.example.mvvmhilt.data.models.Resource
 import com.example.mvvmhilt.data.models.UserResponse
@@ -17,7 +18,7 @@ class SampleRepo @Inject constructor(
     val errorData: MutableLiveData<String?> = MutableLiveData()
 
     //Stream live data as Flow
-    val allData: Flow<List<NetworkData>> = dao.getOrderedNetworkDataFlow()
+    val allData: LiveData<List<NetworkData>> = dao.getOrderedNetworkDataFlow()
 
     //To store webData received from the network
     val webData = MutableLiveData<UserResponse?>()
@@ -25,14 +26,14 @@ class SampleRepo @Inject constructor(
     /**
      * This function insert network data to DB
      */
-    fun insertData(data: ArrayList<NetworkData>) {
+    suspend fun insertData(data: ArrayList<NetworkData>) {
         dao.insert(data)
     }
 
     /**
      * This function deletes data from table
      */
-    fun clearAll() {
+    suspend fun clearAll() {
         dao.clearAll()
     }
 

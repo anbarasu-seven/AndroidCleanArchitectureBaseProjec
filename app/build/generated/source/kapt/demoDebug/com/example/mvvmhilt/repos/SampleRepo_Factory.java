@@ -2,7 +2,7 @@
 package com.example.mvvmhilt.repos;
 
 import com.example.mvvmhilt.data.api.ModuleSpecificApis;
-import com.example.mvvmhilt.data.local.SampleDao;
+import com.example.mvvmhilt.data.room.SampleDao;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;

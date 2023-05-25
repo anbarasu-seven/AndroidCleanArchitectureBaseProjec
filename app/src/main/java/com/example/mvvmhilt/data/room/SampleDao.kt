@@ -1,5 +1,6 @@
-package com.example.mvvmhilt.data.local
+package com.example.mvvmhilt.data.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -12,13 +13,13 @@ interface SampleDao {
 
     //REPLACE will replace the old data if it has the same key
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(data: ArrayList<NetworkData>)
+    suspend fun insert(data: ArrayList<NetworkData>)
 
     // A FlowData stream from the DB to handle live continuous data
     @Query("SELECT * FROM sample_table ORDER BY name ASC")
-    fun getOrderedNetworkDataFlow(): Flow<List<NetworkData>>
+    fun getOrderedNetworkDataFlow(): LiveData<List<NetworkData>>
 
     //Delete data from table
     @Query("DELETE FROM sample_table")
-    fun clearAll()
+    suspend fun clearAll()
 }

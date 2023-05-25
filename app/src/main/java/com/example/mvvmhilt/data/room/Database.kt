@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.data.local
+package com.example.mvvmhilt.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

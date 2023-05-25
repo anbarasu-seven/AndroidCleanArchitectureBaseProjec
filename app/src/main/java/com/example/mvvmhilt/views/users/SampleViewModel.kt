@@ -16,7 +16,7 @@ class SampleViewModel @Inject constructor(private val sampleRepo: SampleRepo) : 
     val errorData: LiveData<String?> = sampleRepo.errorData
 
     //Get live network data records from room DB as Flow
-    val networkData: LiveData<List<NetworkData>> = sampleRepo.allData.asLiveData()
+    val networkData: LiveData<List<NetworkData>> = sampleRepo.allData
 
     //Get data from web as live data and expose to view for observing
     val webData: MutableLiveData<UserResponse?> = sampleRepo.webData
