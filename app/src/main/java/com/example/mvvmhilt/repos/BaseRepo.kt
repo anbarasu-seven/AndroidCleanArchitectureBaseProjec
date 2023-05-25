@@ -15,7 +15,7 @@ abstract class BaseRepo() {
 
     // we'll use this function in all
     // repos to handle api errors.
-    suspend fun <T> safeApiCall(apiToBeCalled: suspend () -> Response<T>): Resource<T> {
+    protected suspend fun <T> safeApiCall(apiToBeCalled: suspend () -> Response<T>): Resource<T> {
 
         // Returning api response
         // wrapped in Resource class

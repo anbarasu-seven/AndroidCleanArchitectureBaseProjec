@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.example.mvvmhilt.data.models.NetworkData
+import com.example.mvvmhilt.data.models.UserData
 import com.example.mvvmhilt.data.room.Database
 import com.example.mvvmhilt.data.room.SampleDao
 import com.google.common.truth.Truth.*
@@ -43,36 +43,36 @@ class SampleDaoTest {
 
     @Test
     fun test_insert_function_in_SampleDao() = runBlockingTest {
-        val item1 = NetworkData("name1", "craft1")
+        val item1 = UserData("name1", "craft1")
 
         val list = arrayListOf(item1, item1)
         sampleDao.insert(list)
 
-        val result = sampleDao.getOrderedNetworkDataFlow().getOrAwaitValue()
+        val result = sampleDao.getUsers().getOrAwaitValue()
         assertThat(result).contains(item1)
     }
 
     @Test
     fun test_getOrderedNetworkDataFlow_function_in_SampleDao() = runBlockingTest {
-        val item1 = NetworkData("name1", "craft1")
-        val item2 = NetworkData("name2", "craft2")
-        val item3 = NetworkData("name3", "craft3")
+        val item1 = UserData("name1", "craft1")
+        val item2 = UserData("name2", "craft2")
+        val item3 = UserData("name3", "craft3")
 
         val list = arrayListOf(item1, item2, item3)
         sampleDao.insert(list)
 
-        val result = sampleDao.getOrderedNetworkDataFlow().getOrAwaitValue()
+        val result = sampleDao.getUsers().getOrAwaitValue()
         assertThat(result).containsExactly(item1, item2, item3)
     }
 
     @Test
     fun test_clearAll_function_in_SampleDao() = runBlockingTest {
-        val item1 = NetworkData("name1", "craft1")
+        val item1 = UserData("name1", "craft1")
         val list = arrayListOf(item1)
         sampleDao.insert(list)
-        sampleDao.clearAll()
+        sampleDao.clear()
 
-        val result = sampleDao.getOrderedNetworkDataFlow().getOrAwaitValue()
+        val result = sampleDao.getUsers().getOrAwaitValue()
         assertThat(result).doesNotContain(item1)
     }
 }

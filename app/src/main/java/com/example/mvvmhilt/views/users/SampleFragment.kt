@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmhilt.R
 import com.example.mvvmhilt.databinding.FragmentSampleBinding
 import com.example.mvvmhilt.extensions.showToast
-import com.example.mvvmhilt.data.models.NetworkData
+import com.example.mvvmhilt.data.models.UserData
 import timber.log.Timber
 
 /**
@@ -51,7 +51,7 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
             layoutManager = LinearLayoutManager(requireContext(), GridLayoutManager.VERTICAL, false)
             recycleAdapter = SampleAdapter()
             adapter = recycleAdapter
-            recycleAdapter.submitList(arrayListOf<NetworkData>())
+            recycleAdapter.submitList(arrayListOf<UserData>())
         }
     }
 
@@ -74,7 +74,7 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
         }
 
         //Set observer for webData
-        sampleViewModel.webData.observe(viewLifecycleOwner) {
+        sampleViewModel.apiUsersData.observe(viewLifecycleOwner) {
             Timber.d("It is:%s", it)
             sampleViewModel.insertData(it?.people!!)
         }
@@ -83,7 +83,7 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
          * listerner to observer network data from room db
          * Display data in recycle view
          */
-        sampleViewModel.networkData.observe(viewLifecycleOwner) {
+        sampleViewModel.roomUsersData.observe(viewLifecycleOwner) {
             //this work as notifyDatasetChanged()
             recycleAdapter.submitList(it)
         }
