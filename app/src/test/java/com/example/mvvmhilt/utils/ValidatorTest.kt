@@ -41,8 +41,8 @@ class ValidatorTest {
     }
 
     @Test
-    fun `valis username and password should return true`(){
+    fun `valid username and password should return true`(){
         val result = Validator.validateLoginInput(username = "username", password = "password12")
-        assertThat(result).isFalse()
+        assertThat(result).isTrue()
     }
 }
