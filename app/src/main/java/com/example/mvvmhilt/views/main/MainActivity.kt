@@ -17,11 +17,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        showToast("ActivitySampleTest")
 
         binding.testDisplayButton.setOnClickListener {
             changeFragment()
-            Timber.d("Sample Fragment Displayed")
         }
     }
 
