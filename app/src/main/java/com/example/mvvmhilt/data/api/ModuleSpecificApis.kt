@@ -1,7 +1,6 @@
-package com.example.mvvmhilt.apis
+package com.example.mvvmhilt.data.api
 
-import com.example.mvvmhilt.models.Resource
-import com.example.mvvmhilt.models.UserResponse
+import com.example.mvvmhilt.data.models.UserResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -1,11 +1,11 @@
-package com.example.mvvmhilt.interfaces
+package com.example.mvvmhilt.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.mvvmhilt.data.models.NetworkData
 import kotlinx.coroutines.flow.Flow
-import com.example.mvvmhilt.models.NetworkData
 
 @Dao
 interface SampleDao {

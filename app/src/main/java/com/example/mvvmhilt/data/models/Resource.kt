@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.models
+package com.example.mvvmhilt.data.models
 
 sealed class Resource<T>(
     val data: T? = null,

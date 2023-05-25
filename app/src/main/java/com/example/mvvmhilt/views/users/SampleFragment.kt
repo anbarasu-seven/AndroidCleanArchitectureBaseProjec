@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.views
+package com.example.mvvmhilt.views.users
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmhilt.R
-import com.example.mvvmhilt.adapter.SampleAdapter
 import com.example.mvvmhilt.databinding.FragmentSampleBinding
 import com.example.mvvmhilt.extensions.showToast
-import com.example.mvvmhilt.models.NetworkData
-import com.example.mvvmhilt.viewmodels.SampleViewModel
+import com.example.mvvmhilt.data.models.NetworkData
 import timber.log.Timber
 
 /**

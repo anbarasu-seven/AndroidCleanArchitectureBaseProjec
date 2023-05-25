@@ -1,14 +1,12 @@
-package com.example.mvvmhilt.adapter
+package com.example.mvvmhilt.views.users
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mvvmhilt.R
 import com.example.mvvmhilt.databinding.SampleItemBinding
-import com.example.mvvmhilt.models.NetworkData
+import com.example.mvvmhilt.data.models.NetworkData
 import dagger.hilt.android.scopes.FragmentScoped
 
 @FragmentScoped

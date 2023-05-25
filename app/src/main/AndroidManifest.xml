@@ -20,7 +20,7 @@
         android:theme="@style/Theme.MVVMHiltSample"
         tools:targetApi="31">
         <activity
-            android:name="com.example.mvvmhilt.views.MainActivity"
+            android:name="com.example.mvvmhilt.views.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

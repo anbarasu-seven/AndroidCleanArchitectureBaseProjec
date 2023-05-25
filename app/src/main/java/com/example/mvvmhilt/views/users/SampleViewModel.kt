@@ -1,9 +1,9 @@
-package com.example.mvvmhilt.viewmodels
+package com.example.mvvmhilt.views.users
 
 import androidx.lifecycle.*
-import com.example.mvvmhilt.models.NetworkData
-import com.example.mvvmhilt.models.UserResponse
-import com.example.mvvmhilt.repository.SampleRepo
+import com.example.mvvmhilt.data.models.NetworkData
+import com.example.mvvmhilt.data.models.UserResponse
+import com.example.mvvmhilt.repos.SampleRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

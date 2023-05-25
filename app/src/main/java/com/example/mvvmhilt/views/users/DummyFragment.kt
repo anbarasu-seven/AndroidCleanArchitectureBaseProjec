@@ -1,27 +1,19 @@
-package com.example.mvvmhilt.views
+package com.example.mvvmhilt.views.users
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
 import com.example.mvvmhilt.R
-import com.example.mvvmhilt.adapter.SampleAdapter
 import com.example.mvvmhilt.databinding.DummyFragmentBinding
-import com.example.mvvmhilt.databinding.FragmentSampleBinding
-import com.example.mvvmhilt.extensions.showToast
-import com.example.mvvmhilt.viewmodels.SampleViewModel
-import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
 */
 class DummyFragment : Fragment(R.layout.dummy_fragment) {
 
-    private var binding:DummyFragmentBinding? = null
+    private var binding: DummyFragmentBinding? = null
 
     /**
      * Inflate the layout for this fragment and set [binding]
@@ -31,7 +23,7 @@ class DummyFragment : Fragment(R.layout.dummy_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DummyFragmentBinding.inflate(inflater,container,false)
+        binding = DummyFragmentBinding.inflate(inflater, container, false)
         return binding!!.root
     }
 

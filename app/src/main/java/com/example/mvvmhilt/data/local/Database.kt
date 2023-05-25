@@ -1,9 +1,8 @@
-package com.example.mvvmhilt.room
+package com.example.mvvmhilt.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.mvvmhilt.interfaces.SampleDao
-import com.example.mvvmhilt.models.NetworkData
+import com.example.mvvmhilt.data.models.NetworkData
 
 /**
  * Declare all entities that exists in the database

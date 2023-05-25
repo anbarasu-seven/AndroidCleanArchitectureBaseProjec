@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.models
+package com.example.mvvmhilt.data.models
 
 class Constants {
     companion object {

@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/dummyFragment"
-        android:name="com.example.mvvmhilt.views.DummyFragment"
+        android:name="com.example.mvvmhilt.views.users.DummyFragment"
         android:label="InitialFragment">
 
         <!--action to navigate second fragment-->
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.mvvmhilt.views.SampleFragment"
+        android:name="com.example.mvvmhilt.views.users.SampleFragment"
         android:label="SearchFragment">
 
         <!--action to navigate second fragment-->

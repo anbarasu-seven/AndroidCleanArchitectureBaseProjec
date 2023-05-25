@@ -1,12 +1,11 @@
-package com.example.mvvmhilt.repository
+package com.example.mvvmhilt.repos
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.mvvmhilt.apis.ModuleSpecificApis
-import com.example.mvvmhilt.interfaces.SampleDao
-import com.example.mvvmhilt.models.NetworkData
-import com.example.mvvmhilt.models.Resource
-import com.example.mvvmhilt.models.UserResponse
+import com.example.mvvmhilt.data.api.ModuleSpecificApis
+import com.example.mvvmhilt.data.local.SampleDao
+import com.example.mvvmhilt.data.models.NetworkData
+import com.example.mvvmhilt.data.models.Resource
+import com.example.mvvmhilt.data.models.UserResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

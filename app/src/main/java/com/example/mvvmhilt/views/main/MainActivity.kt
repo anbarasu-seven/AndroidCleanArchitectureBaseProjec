@@ -1,11 +1,8 @@
-package com.example.mvvmhilt.views
+package com.example.mvvmhilt.views.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.example.mvvmhilt.R
 import com.example.mvvmhilt.databinding.ActivityMainBinding
 import com.example.mvvmhilt.extensions.showToast

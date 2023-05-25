@@ -1,8 +1,8 @@
-package com.example.mvvmhilt.repository
+package com.example.mvvmhilt.repos
 
 
-import com.example.mvvmhilt.models.ErrorResponse
-import com.example.mvvmhilt.models.Resource
+import com.example.mvvmhilt.data.models.ErrorResponse
+import com.example.mvvmhilt.data.models.Resource
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
