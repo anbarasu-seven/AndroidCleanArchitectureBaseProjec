@@ -43,10 +43,9 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showToast("FragmentSampleTest")
+        addClickListeners()
         setupRecyclerViewAdapterInitially()
         observerData()
-
-
     }
 
     private fun setupRecyclerViewAdapterInitially() {
@@ -55,6 +54,17 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
             recycleAdapter = SampleAdapter()
             adapter = recycleAdapter
             recycleAdapter.submitList(arrayListOf<NetworkData>())
+        }
+    }
+
+    private fun addClickListeners(){
+        binding?.testGetButton?.setOnClickListener {
+            sampleViewModel.performNetworkRequest()
+        }
+
+        binding?.testDelButton?.setOnClickListener {
+            sampleViewModel.deleteData()
+            showToast("Data deleted")
         }
     }
 
@@ -70,16 +80,6 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
             Timber.d("It is:%s", it)
             sampleViewModel.insertData(it?.people!!)
         }
-
-        binding?.testGetButton?.setOnClickListener {
-            sampleViewModel.performNetworkRequest()
-        }
-
-        binding?.testDelButton?.setOnClickListener {
-            sampleViewModel.deleteData()
-            showToast("Data deleted")
-        }
-
 
         /**
          * listerner to observer network data from room db
