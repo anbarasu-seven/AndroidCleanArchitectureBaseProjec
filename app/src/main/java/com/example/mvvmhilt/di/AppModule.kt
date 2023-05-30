@@ -7,8 +7,8 @@ import com.example.mvvmhilt.data.api.UsersApi
 import com.example.mvvmhilt.data.models.Constants
 import com.example.mvvmhilt.data.room.Database
 import com.example.mvvmhilt.data.room.UserDao
-import com.example.mvvmhilt.repos.SampleRepo
-import com.example.mvvmhilt.repos.SampleRepoImpl
+import com.example.mvvmhilt.domain.repos.UsersRepo
+import com.example.mvvmhilt.data.repos.UsersRepoImpl
 import com.example.mvvmhilt.utils.InternetStatus
 import com.example.mvvmhilt.utils.InternetStatusImpl
 import dagger.Module
@@ -36,7 +36,7 @@ object AppModule {
     ) = Room.databaseBuilder(
         app,
         Database::class.java,
-        "SampleDatabase"
+        "users-db"
     ).fallbackToDestructiveMigration().build()
 
     /**
@@ -81,8 +81,8 @@ object AppModule {
      */
     @Provides
     @Singleton
-    fun provideSampleRepoInterface(apis: UsersApi, dao: UserDao): SampleRepo {
-        return SampleRepoImpl(apis, dao)
+    fun provideSampleRepoInterface(apis: UsersApi, dao: UserDao): UsersRepo {
+        return UsersRepoImpl(apis, dao)
     }
 
 }

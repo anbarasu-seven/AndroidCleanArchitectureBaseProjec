@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.repos
+package com.example.mvvmhilt.data.repos
 
 
 import com.example.mvvmhilt.data.models.ErrorResponse

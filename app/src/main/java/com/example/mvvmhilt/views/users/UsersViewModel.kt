@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.mvvmhilt.data.models.Resource
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.models.UserResponse
-import com.example.mvvmhilt.repos.SampleRepo
+import com.example.mvvmhilt.domain.usecase.DisplayUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UsersViewModel @Inject constructor(private val sampleRepo: SampleRepo) : ViewModel() {
+class UsersViewModel @Inject constructor(private val useCase: DisplayUsersUseCase) : ViewModel() {
 
     //Get live network data records from room DB as Flow
     var roomUsersData: LiveData<List<User>> = MutableLiveData()
@@ -23,13 +23,13 @@ class UsersViewModel @Inject constructor(private val sampleRepo: SampleRepo) : V
     val apiUsersData: MutableLiveData<Resource<UserResponse>> = MutableLiveData()
 
     init {
-        roomUsersData = sampleRepo.observeRoomUsersData()
+        roomUsersData = useCase.observeRoomUsersData()
     }
     /**
      * Launch network request to fetch data
      */
     fun performNetworkRequest() = viewModelScope.launch {
-        val response = sampleRepo.getUsersFromApi()
+        val response = useCase.getUsersFromApi()
         apiUsersData.postValue(response)
     }
 
@@ -37,13 +37,13 @@ class UsersViewModel @Inject constructor(private val sampleRepo: SampleRepo) : V
      * Insert data into room DB
      */
     fun insertData(data: ArrayList<User>) = viewModelScope.launch(Dispatchers.IO) {
-        sampleRepo.insert(data)
+        useCase.insert(data)
     }
 
     /**
      * Delete data from room DB
      */
     fun deleteData() = viewModelScope.launch(Dispatchers.IO) {
-        sampleRepo.clear()
+        useCase.clear()
     }
 }

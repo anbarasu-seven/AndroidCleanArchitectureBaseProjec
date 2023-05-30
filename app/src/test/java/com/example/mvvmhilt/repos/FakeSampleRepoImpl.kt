@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.mvvmhilt.data.models.Resource
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.models.UserResponse
+import com.example.mvvmhilt.domain.repos.UsersRepo
 
-class FakeSampleRepoImpl : SampleRepo {
+class FakeSampleRepoImpl : UsersRepo {
 
     //observable user list from DB
     val observableNetworkError = MutableLiveData<String>()

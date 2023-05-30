@@ -8,7 +8,7 @@
 
     <application
         android:installLocation="preferExternal"
-        android:name="com.example.mvvmhilt.SampleApplication"
+        android:name="com.example.mvvmhilt.UsersApplication"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

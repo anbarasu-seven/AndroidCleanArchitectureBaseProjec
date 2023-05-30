@@ -8,7 +8,7 @@ import timber.log.Timber
  * Every project that uses Hilt requires an application class annotated with @HiltAndroidApp
  */
 @HiltAndroidApp
-class SampleApplication : Application() {
+class UsersApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         //Logging library, do not need to specify tags
