@@ -10,17 +10,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmhilt.R
 import com.example.mvvmhilt.data.models.Resource
-import com.example.mvvmhilt.data.models.UserData
+import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.databinding.FragmentSampleBinding
 import com.example.mvvmhilt.utils.extn.showToast
 
 /**
  * A simple [Fragment] subclass.
  */
-class SampleFragment : Fragment(R.layout.fragment_sample) {
+class UsersFragment : Fragment(R.layout.fragment_sample) {
 
-    private lateinit var recycleAdapter: SampleAdapter
-    private val sampleViewModel: SampleViewModel by activityViewModels()
+    private lateinit var recycleAdapter: UsersAdapter
+    private val sampleViewModel: UsersViewModel by activityViewModels()
     private var binding: FragmentSampleBinding? = null
 
     /**
@@ -49,9 +49,9 @@ class SampleFragment : Fragment(R.layout.fragment_sample) {
     private fun setupRecyclerViewAdapterInitially() {
         binding?.sampleRecyclerList?.apply {
             layoutManager = LinearLayoutManager(requireContext(), GridLayoutManager.VERTICAL, false)
-            recycleAdapter = SampleAdapter()
+            recycleAdapter = UsersAdapter()
             adapter = recycleAdapter
-            recycleAdapter.submitList(arrayListOf<UserData>())
+            recycleAdapter.submitList(arrayListOf<User>())
         }
     }
 

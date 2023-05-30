@@ -4,8 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.data.api.room.getOrAwaitValueTest
 import com.example.mvvmhilt.data.models.Resource
-import com.example.mvvmhilt.data.models.UserData
-import com.example.mvvmhilt.data.models.UserResponse
+import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.repos.FakeSampleRepoImpl
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -23,18 +22,18 @@ class SampleViewModelTest {
     @get:Rule
     val mainCoroutineRule = MainCoroutineRule()
 
-    private lateinit var viewModel: SampleViewModel
+    private lateinit var viewModel: UsersViewModel
     private lateinit var fakeRepository: FakeSampleRepoImpl
 
     @Before
     fun setup() {
         fakeRepository = FakeSampleRepoImpl()
-        viewModel = SampleViewModel(fakeRepository)
+        viewModel = UsersViewModel(fakeRepository)
     }
 
     @Test
     fun `test inserting data into repoitory success case`() {
-        val item1 = UserData("name1", "craft1")
+        val item1 = User("name1", "craft1")
         val list = arrayListOf(item1)
         viewModel.insertData(list)
         val result = viewModel.roomUsersData.getOrAwaitValueTest()
@@ -43,7 +42,7 @@ class SampleViewModelTest {
 
     @Test
     fun `test deleting data from repoository success case`() {
-        val item2 = UserData("name2", "craft2")
+        val item2 = User("name2", "craft2")
         val list = arrayListOf(item2)
         viewModel.insertData(list)
         viewModel.deleteData()

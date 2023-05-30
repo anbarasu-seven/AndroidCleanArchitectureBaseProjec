@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.mvvmhilt.views.users.SampleFragment"
+        android:name="com.example.mvvmhilt.views.users.UsersFragment"
         android:label="SearchFragment">
 
         <!--action to navigate second fragment-->

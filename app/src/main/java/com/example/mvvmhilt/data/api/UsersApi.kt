@@ -7,7 +7,7 @@ import retrofit2.http.GET
 /**
  * REST API access points
  */
-interface ModuleSpecificApis {
+interface UsersApi {
 
     //simple get example
     @GET("astros.json")

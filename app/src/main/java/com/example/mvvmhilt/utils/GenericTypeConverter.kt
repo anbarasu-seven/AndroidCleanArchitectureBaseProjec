@@ -1,6 +1,6 @@
 package com.example.mvvmhilt.utils
 
-import com.example.mvvmhilt.data.models.UserData
+import com.example.mvvmhilt.data.models.User
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
@@ -18,8 +18,8 @@ class GenericTypeConverter @Inject constructor() {
      * @throws com.google.gson.JsonSyntaxException if the json string is not a valid json structure.
      */
     @Throws(JsonSyntaxException::class)
-    fun transformUserEntity(userJsonResponse: String?): UserData {
-        val userEntityType: Type = object : TypeToken<UserData?>() {}.type
+    fun transformUserEntity(userJsonResponse: String?): User {
+        val userEntityType: Type = object : TypeToken<User?>() {}.type
         return gson.fromJson(userJsonResponse, userEntityType)
     }
 
@@ -31,9 +31,9 @@ class GenericTypeConverter @Inject constructor() {
      * @throws com.google.gson.JsonSyntaxException if the json string is not a valid json structure.
      */
     @Throws(JsonSyntaxException::class)
-    fun transformUserEntityCollection(userListJsonResponse: String?): List<UserData> {
-        val listOfUserEntityType: Type = object : TypeToken<List<UserData?>?>() {}.type
-        return gson.fromJson<List<UserData>>(userListJsonResponse, listOfUserEntityType)
+    fun transformUserEntityCollection(userListJsonResponse: String?): List<User> {
+        val listOfUserEntityType: Type = object : TypeToken<List<User?>?>() {}.type
+        return gson.fromJson<List<User>>(userListJsonResponse, listOfUserEntityType)
     }
 
 }

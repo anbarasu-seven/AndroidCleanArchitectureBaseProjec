@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.mvvmhilt.utils.extn.connectivityManager
 import javax.inject.Inject
 
 class InternetStatusImpl @Inject constructor(val context: Context) : InternetStatus {
@@ -14,7 +15,7 @@ class InternetStatusImpl @Inject constructor(val context: Context) : InternetSta
     //internet status holder
     private var status: LiveData<Boolean> = MutableLiveData(false)
 
-    private val cM = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private val cM = context.connectivityManager
     private val nR = NetworkRequest.Builder()
         .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
         .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)

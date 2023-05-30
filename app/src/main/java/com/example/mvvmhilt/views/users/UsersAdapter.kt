@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmhilt.databinding.SampleItemBinding
-import com.example.mvvmhilt.data.models.UserData
+import com.example.mvvmhilt.data.models.User
 import dagger.hilt.android.scopes.FragmentScoped
 
 @FragmentScoped
-class SampleAdapter : ListAdapter<UserData, SampleAdapter.ViewHolder>(NetworkDataCallBack()) {
+class UsersAdapter : ListAdapter<User, UsersAdapter.ViewHolder>(NetworkDataCallBack()) {
 
     class ViewHolder(val binding: SampleItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -37,13 +37,13 @@ class SampleAdapter : ListAdapter<UserData, SampleAdapter.ViewHolder>(NetworkDat
     }
 }
 
-class NetworkDataCallBack : DiffUtil.ItemCallback<UserData>() {
+class NetworkDataCallBack : DiffUtil.ItemCallback<User>() {
 
-    override fun areItemsTheSame(oldItem: UserData, newItem: UserData): Boolean {
+    override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: UserData, newItem: UserData): Boolean {
+    override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
         return oldItem.name == newItem.name
     }
 }

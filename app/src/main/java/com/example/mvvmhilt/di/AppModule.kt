@@ -3,10 +3,10 @@ package com.example.mvvmhilt.di
 import android.content.Context
 import androidx.room.Room
 import com.example.mvvmhilt.BuildConfig
-import com.example.mvvmhilt.data.api.ModuleSpecificApis
+import com.example.mvvmhilt.data.api.UsersApi
 import com.example.mvvmhilt.data.models.Constants
 import com.example.mvvmhilt.data.room.Database
-import com.example.mvvmhilt.data.room.SampleDao
+import com.example.mvvmhilt.data.room.UserDao
 import com.example.mvvmhilt.repos.SampleRepo
 import com.example.mvvmhilt.repos.SampleRepoImpl
 import com.example.mvvmhilt.utils.InternetStatus
@@ -44,17 +44,17 @@ object AppModule {
      */
     @Singleton
     @Provides
-    fun provideDao(database: Database): SampleDao = database.getDao()
+    fun provideDao(database: Database): UserDao = database.getDao()
 
     @Singleton
     @Provides
-    fun provideGithubService(okHttpClient: OkHttpClient): ModuleSpecificApis {
+    fun provideGithubService(okHttpClient: OkHttpClient): UsersApi {
         return Retrofit.Builder()
             .baseUrl(Constants.WEB_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
-            .create(ModuleSpecificApis::class.java)
+            .create(UsersApi::class.java)
     }
 
     @Singleton
@@ -62,24 +62,26 @@ object AppModule {
     fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
+        OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
     } else {
-        OkHttpClient
-            .Builder()
-            .build()
+        OkHttpClient.Builder().build()
     }
 
+    /**
+     * Provide class that is responsible for knowing internet status
+     */
     @Provides
     @Singleton
     fun provideNetworkConnectivity(@ApplicationContext context: Context): InternetStatus {
         return InternetStatusImpl(context)
     }
 
+    /**
+     * Provide class that is responsible for knowing internet status
+     */
     @Provides
     @Singleton
-    fun provideSampleRepoInterface(apis: ModuleSpecificApis, dao: SampleDao): SampleRepo {
+    fun provideSampleRepoInterface(apis: UsersApi, dao: UserDao): SampleRepo {
         return SampleRepoImpl(apis, dao)
     }
 

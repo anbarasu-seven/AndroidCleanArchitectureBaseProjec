@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.mvvmhilt.data.models.UserData
+import com.example.mvvmhilt.data.models.User
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,7 +22,7 @@ class DataStoreManager @Inject constructor(val context: Context) {
         val PHONE_NUMBER = stringPreferencesKey("PHONE_NUMBER")
     }
 
-    suspend fun save(userData: UserData) {
+    suspend fun save(userData: User) {
         context.dataStore.edit {
             it[NAME] = userData.name
             it[EMAIL] = "userData.email"
@@ -31,7 +31,7 @@ class DataStoreManager @Inject constructor(val context: Context) {
     }
 
     suspend fun getFromDataStore() = context.dataStore.data.map {
-        UserData(
+        User(
             name = it[NAME] ?: "",
             craft = it[CRAFT] ?: "",
         )

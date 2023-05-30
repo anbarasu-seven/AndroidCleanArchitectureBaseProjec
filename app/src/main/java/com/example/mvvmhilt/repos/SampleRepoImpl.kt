@@ -1,18 +1,18 @@
 package com.example.mvvmhilt.repos
 
-import com.example.mvvmhilt.data.api.ModuleSpecificApis
+import com.example.mvvmhilt.data.api.UsersApi
 import com.example.mvvmhilt.data.models.Resource
-import com.example.mvvmhilt.data.models.UserData
+import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.models.UserResponse
-import com.example.mvvmhilt.data.room.SampleDao
+import com.example.mvvmhilt.data.room.UserDao
 import javax.inject.Inject
 
 class SampleRepoImpl @Inject constructor(
-    private val api: ModuleSpecificApis,
-    private val dao: SampleDao
+    private val api: UsersApi,
+    private val dao: UserDao
 ) : BaseRepo(), SampleRepo {
 
-    override suspend fun insert(data: ArrayList<UserData>) = dao.insert(data)
+    override suspend fun insert(data: ArrayList<User>) = dao.insert(data)
 
     override suspend fun clear() = dao.clear()
 

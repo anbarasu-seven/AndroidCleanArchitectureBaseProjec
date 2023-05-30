@@ -5,9 +5,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.example.mvvmhilt.data.models.UserData
+import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.room.Database
-import com.example.mvvmhilt.data.room.SampleDao
+import com.example.mvvmhilt.data.room.UserDao
 import com.google.common.truth.Truth.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -24,7 +24,7 @@ class SampleDaoTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule() // for blocking function test
-    private lateinit var sampleDao: SampleDao
+    private lateinit var sampleDao: UserDao
     private lateinit var database: Database
 
     @Before
@@ -43,7 +43,7 @@ class SampleDaoTest {
 
     @Test
     fun test_insert_function_in_SampleDao() = runBlockingTest {
-        val item1 = UserData("name1", "craft1")
+        val item1 = User("name1", "craft1")
 
         val list = arrayListOf(item1, item1)
         sampleDao.insert(list)
@@ -54,9 +54,9 @@ class SampleDaoTest {
 
     @Test
     fun test_getOrderedNetworkDataFlow_function_in_SampleDao() = runBlockingTest {
-        val item1 = UserData("name1", "craft1")
-        val item2 = UserData("name2", "craft2")
-        val item3 = UserData("name3", "craft3")
+        val item1 = User("name1", "craft1")
+        val item2 = User("name2", "craft2")
+        val item3 = User("name3", "craft3")
 
         val list = arrayListOf(item1, item2, item3)
         sampleDao.insert(list)
@@ -67,7 +67,7 @@ class SampleDaoTest {
 
     @Test
     fun test_clearAll_function_in_SampleDao() = runBlockingTest {
-        val item1 = UserData("name1", "craft1")
+        val item1 = User("name1", "craft1")
         val list = arrayListOf(item1)
         sampleDao.insert(list)
         sampleDao.clear()

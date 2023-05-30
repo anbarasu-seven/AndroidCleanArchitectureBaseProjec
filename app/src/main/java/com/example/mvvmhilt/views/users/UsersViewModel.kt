@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mvvmhilt.data.models.Resource
-import com.example.mvvmhilt.data.models.UserData
+import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.models.UserResponse
 import com.example.mvvmhilt.repos.SampleRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,10 +14,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SampleViewModel @Inject constructor(private val sampleRepo: SampleRepo) : ViewModel() {
+class UsersViewModel @Inject constructor(private val sampleRepo: SampleRepo) : ViewModel() {
 
     //Get live network data records from room DB as Flow
-    var roomUsersData: LiveData<List<UserData>> = MutableLiveData()
+    var roomUsersData: LiveData<List<User>> = MutableLiveData()
 
     //Get data from web as live data and expose to view for observing
     val apiUsersData: MutableLiveData<Resource<UserResponse>> = MutableLiveData()
@@ -36,7 +36,7 @@ class SampleViewModel @Inject constructor(private val sampleRepo: SampleRepo) : 
     /**
      * Insert data into room DB
      */
-    fun insertData(data: ArrayList<UserData>) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertData(data: ArrayList<User>) = viewModelScope.launch(Dispatchers.IO) {
         sampleRepo.insert(data)
     }
 
