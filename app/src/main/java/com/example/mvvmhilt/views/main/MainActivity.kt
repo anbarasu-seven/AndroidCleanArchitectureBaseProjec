@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.example.mvvmhilt.R
 import com.example.mvvmhilt.databinding.ActivityMainBinding
-import com.example.mvvmhilt.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

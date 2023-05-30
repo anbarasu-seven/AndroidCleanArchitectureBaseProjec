@@ -12,7 +12,7 @@ import com.example.mvvmhilt.R
 import com.example.mvvmhilt.data.models.Resource
 import com.example.mvvmhilt.data.models.UserData
 import com.example.mvvmhilt.databinding.FragmentSampleBinding
-import com.example.mvvmhilt.extensions.showToast
+import com.example.mvvmhilt.utils.extn.showToast
 
 /**
  * A simple [Fragment] subclass.
