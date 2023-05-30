@@ -3,6 +3,7 @@ package com.example.mvvmhilt.utils
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.example.mvvmhilt.R
+import com.example.mvvmhilt.common.utils.ResValidator
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
 import org.junit.Before

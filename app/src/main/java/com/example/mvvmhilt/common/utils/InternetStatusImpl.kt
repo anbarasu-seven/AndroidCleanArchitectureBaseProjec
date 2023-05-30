@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.utils
+package com.example.mvvmhilt.common.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -7,7 +7,7 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.mvvmhilt.utils.extn.connectivityManager
+import com.example.mvvmhilt.common.utils.extn.connectivityManager
 import javax.inject.Inject
 
 class InternetStatusImpl @Inject constructor(val context: Context) : InternetStatus {

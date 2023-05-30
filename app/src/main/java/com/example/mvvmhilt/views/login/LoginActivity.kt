@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mvvmhilt.databinding.LoginActivityBinding
-import com.example.mvvmhilt.utils.extn.hideKeyboard
-import com.example.mvvmhilt.utils.extn.showToast
+import com.example.mvvmhilt.common.utils.extn.hideKeyboard
+import com.example.mvvmhilt.common.utils.extn.showToast
 import com.example.mvvmhilt.views.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {

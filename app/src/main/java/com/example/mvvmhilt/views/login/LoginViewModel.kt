@@ -3,7 +3,7 @@ package com.example.mvvmhilt.views.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mvvmhilt.utils.Validator
+import com.example.mvvmhilt.common.utils.Validator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.utils
+package com.example.mvvmhilt.common.utils
 
 import android.content.Context
 

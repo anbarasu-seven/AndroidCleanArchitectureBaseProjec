@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.di
+package com.example.mvvmhilt.common.di
 
 import android.content.Context
 import androidx.room.Room
@@ -9,8 +9,8 @@ import com.example.mvvmhilt.data.room.Database
 import com.example.mvvmhilt.data.room.UserDao
 import com.example.mvvmhilt.domain.repos.UsersRepo
 import com.example.mvvmhilt.data.repos.UsersRepoImpl
-import com.example.mvvmhilt.utils.InternetStatus
-import com.example.mvvmhilt.utils.InternetStatusImpl
+import com.example.mvvmhilt.common.utils.InternetStatus
+import com.example.mvvmhilt.common.utils.InternetStatusImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

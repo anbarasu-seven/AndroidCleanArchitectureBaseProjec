@@ -1,6 +1,6 @@
 package com.example.mvvmhilt.utils
 
-import com.google.common.truth.Truth
+import com.example.mvvmhilt.common.utils.Validator
 import com.google.common.truth.Truth.*
 import org.junit.After
 import org.junit.Before

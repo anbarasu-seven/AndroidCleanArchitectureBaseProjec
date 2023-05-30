@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.utils
+package com.example.mvvmhilt.common.utils
 
 import com.example.mvvmhilt.data.models.User
 import com.google.gson.Gson

@@ -1,11 +1,9 @@
-package com.example.mvvmhilt.utils.extn
+package com.example.mvvmhilt.common.utils.extn
 
 import android.app.Activity
-import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 
 /**
  * This extension function display a string as a toast msg in activity

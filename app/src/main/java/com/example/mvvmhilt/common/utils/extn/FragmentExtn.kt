@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.utils.extn
+package com.example.mvvmhilt.common.utils.extn
 
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
