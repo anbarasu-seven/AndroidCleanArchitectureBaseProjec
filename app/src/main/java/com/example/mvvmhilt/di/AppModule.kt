@@ -9,8 +9,8 @@ import com.example.mvvmhilt.data.room.Database
 import com.example.mvvmhilt.data.room.SampleDao
 import com.example.mvvmhilt.repos.SampleRepo
 import com.example.mvvmhilt.repos.SampleRepoImpl
-import com.example.mvvmhilt.utils.Network
-import com.example.mvvmhilt.utils.NetworkConnectivity
+import com.example.mvvmhilt.utils.InternetStatus
+import com.example.mvvmhilt.utils.InternetStatusImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -73,8 +73,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNetworkConnectivity(@ApplicationContext context: Context): NetworkConnectivity {
-        return Network(context)
+    fun provideNetworkConnectivity(@ApplicationContext context: Context): InternetStatus {
+        return InternetStatusImpl(context)
     }
 
     @Provides
