@@ -15,12 +15,12 @@
   -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/dummyFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/dummyFragment"
-        android:name="com.example.mvvmhilt.views.users.DummyFragment"
-        android:label="InitialFragment">
+        android:id="@+id/loginFragment"
+        android:name="com.example.mvvmhilt.views.login.LoginFragment"
+        android:label="Login">
 
         <!--action to navigate second fragment-->
         <!--<action
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.mvvmhilt.views.users.UsersFragment"
+        android:name="com.example.mvvmhilt.views.shows.ShowsFragment"
         android:label="SearchFragment">
 
         <!--action to navigate second fragment-->

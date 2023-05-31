@@ -6,42 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.mvvmhilt.views.main.MainActivity">
 
-    <TextView
-        android:id="@+id/headerTextView"
-        style="@style/appHeaderTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/half_vertical_margin"
-        android:text="@string/app_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/middleGuideline"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
-
-    <Button
-        android:id="@+id/testDisplayButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/vertical_margin"
-        android:text="@string/display_fragment"
-        app:layout_constraintBottom_toTopOf="@+id/middleGuideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/middleGuideline"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MergeRootFrame">
 
         <fragment

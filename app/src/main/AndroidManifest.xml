@@ -7,32 +7,27 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:installLocation="preferExternal"
         android:name="com.example.mvvmhilt.UsersApplication"
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+        android:installLocation="preferExternal"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVMHiltSample"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <activity
-            android:name="com.example.mvvmhilt.views.login.LoginActivity"
+            android:name="com.example.mvvmhilt.views.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.example.mvvmhilt.views.main.MainActivity"
-            android:exported="true">
         </activity>
     </application>
 

@@ -1,9 +1,10 @@
-package com.example.mvvmhilt.data.repos
+package com.example.mvvmhilt.data.repos.users
 
 import com.example.mvvmhilt.data.api.UsersApi
 import com.example.mvvmhilt.data.models.Resource
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.models.UserResponse
+import com.example.mvvmhilt.data.repos.BaseRepo
 import com.example.mvvmhilt.data.room.UserDao
 import com.example.mvvmhilt.domain.repos.UsersRepo
 import javax.inject.Inject

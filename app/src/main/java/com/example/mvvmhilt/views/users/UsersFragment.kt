@@ -13,10 +13,12 @@ import com.example.mvvmhilt.data.models.Resource
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.databinding.FragmentSampleBinding
 import com.example.mvvmhilt.common.utils.extn.showToast
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass.
  */
+@AndroidEntryPoint
 class UsersFragment : Fragment(R.layout.fragment_sample) {
 
     private lateinit var recycleAdapter: UsersAdapter

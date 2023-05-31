@@ -14,7 +14,6 @@ import com.bumptech.glide.request.transition.Transition
 fun ImageView.loadFromUrl(url: String) =
     Glide.with(this.context.applicationContext)
         .load(url)
-        .apply(RequestOptions.centerCropTransform())
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(this)
 

@@ -2,6 +2,7 @@ package com.example.mvvmhilt.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.anushka.tmdbclient.data.model.tvshow.TvShow
 import com.example.mvvmhilt.data.models.User
 
 /**
@@ -10,6 +11,7 @@ import com.example.mvvmhilt.data.models.User
 @Database(
     entities = [
         User::class,
+        TvShow::class
     ],
     version = 1,
     exportSchema = false
@@ -17,4 +19,5 @@ import com.example.mvvmhilt.data.models.User
 
 abstract class Database : RoomDatabase() {
     abstract fun getDao(): UserDao
+    abstract fun getTvShowDao(): TvShowDao
 }
