@@ -14,6 +14,6 @@ data class User(
     val craft: String
 )
 
-data class UserResponse(val message: String, val number: Int, val people: ArrayList<User>)
+data class UserResponse(val people: ArrayList<User>)
 
 data class ErrorResponse(val status: String, val failureMessage: String?)

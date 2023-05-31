@@ -1,6 +1,6 @@
 package com.example.mvvmhilt.domain.usecase
 
-import com.example.mvvmhilt.data.models.Resource
+import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.models.UserResponse
 import com.example.mvvmhilt.domain.repos.UsersRepo
@@ -14,7 +14,7 @@ class DisplayUsersUseCase @Inject constructor(private val usersRepo: UsersRepo) 
 
     suspend fun clear() = usersRepo.clear()
 
-    suspend fun getUsersFromApi(): Resource<UserResponse> = usersRepo.getUsersFromApi()
+    suspend fun getUsersFromApi(): UiState<UserResponse> = usersRepo.getUsersFromApi()
 
     fun observeRoomUsersData() = usersRepo.observeRoomUsersData()
 }

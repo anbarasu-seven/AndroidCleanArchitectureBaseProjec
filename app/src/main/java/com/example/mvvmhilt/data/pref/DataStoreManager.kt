@@ -25,15 +25,12 @@ class DataStoreManager @Inject constructor(val context: Context) {
     suspend fun save(userData: User) {
         context.dataStore.edit {
             it[NAME] = userData.name
-            it[EMAIL] = "userData.email"
-            it[PHONE_NUMBER] = "userData.phoneNo"
+            it[EMAIL] = "user.email"
+            it[PHONE_NUMBER] = "user.phoneNo"
         }
     }
 
     suspend fun getFromDataStore() = context.dataStore.data.map {
-        User(
-            name = it[NAME] ?: "",
-            craft = it[CRAFT] ?: "",
-        )
+        User(name = it[NAME] ?: "", craft = it[CRAFT] ?: "",)
     }
 }

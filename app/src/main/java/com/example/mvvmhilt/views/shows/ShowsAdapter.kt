@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.anushka.tmdbclient.data.model.tvshow.TvShow
 import com.example.mvvmhilt.common.utils.extn.loadFromUrl
-import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.databinding.ListItemBinding
 import dagger.hilt.android.scopes.FragmentScoped
 
+
 @FragmentScoped
-class ShowsAdapter(val tvList: ArrayList<TvShow>) : RecyclerView.Adapter<ShowsHolder>() {
+class ShowsAdapter(val tvList: ArrayList<TvShow>) : RecyclerView.Adapter<ShowsAdapter.ShowsHolder>() {
 
     fun setList(tvShows: List<TvShow>) {
         tvList.clear()
@@ -28,24 +28,25 @@ class ShowsAdapter(val tvList: ArrayList<TvShow>) : RecyclerView.Adapter<ShowsHo
     override fun onBindViewHolder(holder: ShowsHolder, position: Int) {
         holder.bind(tvList[position])
     }
-}
 
+    class ShowsHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-class ShowsHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(tvShow: TvShow) {
-        binding.titleTextView.text = tvShow.name
-        binding.descriptionTextView.text = tvShow.overview
-        val posterURL = "https://image.tmdb.org/t/p/w500" + tvShow.posterPath
-        binding.imageView.loadFromUrl(posterURL)
-    }
-
-    companion object {
-        fun create(parent: ViewGroup): ShowsHolder {
-            val binding =
-                ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ShowsHolder(binding)
+        fun bind(tvShow: TvShow) {
+            binding.titleTextView.text = tvShow.name
+            binding.descriptionTextView.text = tvShow.overview
+            val posterURL = "https://image.tmdb.org/t/p/w500" + tvShow.posterPath
+            binding.imageView.loadFromUrl(posterURL)
         }
-    }
 
+        companion object {
+            fun create(parent: ViewGroup): ShowsHolder {
+                val binding =
+                    ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return ShowsHolder(binding)
+            }
+        }
+
+    }
 }
+
+

@@ -2,7 +2,7 @@ package com.example.mvvmhilt.data.repos
 
 
 import com.example.mvvmhilt.data.models.ErrorResponse
-import com.example.mvvmhilt.data.models.Resource
+import com.example.mvvmhilt.data.models.UiState
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,7 +15,7 @@ abstract class BaseRepo() {
 
     // we'll use this function in all
     // repos to handle api errors.
-    suspend fun <T> safeApiCall(apiToBeCalled: suspend () -> Response<T>): Resource<T> {
+    suspend fun <T> safeApiCall(apiToBeCalled: suspend () -> Response<T>): UiState<T> {
 
         // Returning api response
         // wrapped in Resource class
@@ -30,27 +30,27 @@ abstract class BaseRepo() {
                     // In case of success response we
                     // are returning Resource.Success object
                     // by passing our data in it.
-                    Resource.Success(data = response.body()!!)
+                    UiState.Success(data = response.body()!!)
                 } else {
                     // parsing api's own custom json error
                     // response in ExampleErrorResponse pojo
                     val errorResponse: ErrorResponse? = convertErrorBody(response.errorBody())
                     // Simply returning api's own failure message
-                    Resource.Error(errorMessage = errorResponse?.failureMessage ?: "Something went wrong")
+                    UiState.Error(errorMessage = errorResponse?.failureMessage ?: "Something went wrong")
                 }
 
             } catch (e: HttpException) {
                 // Returning HttpException's message
                 // wrapped in Resource.Error
-                Resource.Error(errorMessage = e.message ?: "Something went wrong")
+                UiState.Error(errorMessage = e.message ?: "Something went wrong")
             } catch (e: IOException) {
                 // Returning no internet message
                 // wrapped in Resource.Error
-                Resource.Error("Please check your network connection")
+                UiState.Error("Please check your network connection")
             } catch (e: Exception) {
                 // Returning 'Something went wrong' in case
                 // of unknown error wrapped in Resource.Error
-                Resource.Error(errorMessage = "Something went wrong")
+                UiState.Error(errorMessage = "Something went wrong")
             }
         }
     }

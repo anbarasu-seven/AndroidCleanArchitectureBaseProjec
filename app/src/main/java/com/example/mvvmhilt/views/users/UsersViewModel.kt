@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mvvmhilt.data.models.Resource
+import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.models.UserResponse
 import com.example.mvvmhilt.domain.usecase.DisplayUsersUseCase
@@ -17,20 +17,23 @@ import javax.inject.Inject
 class UsersViewModel @Inject constructor(private val useCase: DisplayUsersUseCase) : ViewModel() {
 
     //Get live network data records from room DB as Flow
-    var roomUsersData: LiveData<List<User>> = MutableLiveData()
+    private var _roomUsersData = MutableLiveData<List<User>>()
+    val roomUsersData: LiveData<List<User>> = _roomUsersData
 
     //Get data from web as live data and expose to view for observing
-    val apiUsersData: MutableLiveData<Resource<UserResponse>> = MutableLiveData()
+    private val _apiUsersData = MutableLiveData<UiState<UserResponse>>()
+    val apiUsersData: LiveData<UiState<UserResponse>> = _apiUsersData
 
     init {
-        roomUsersData = useCase.observeRoomUsersData()
+        _roomUsersData = useCase.observeRoomUsersData() as MutableLiveData<List<User>>
     }
     /**
      * Launch network request to fetch data
      */
     fun performNetworkRequest() = viewModelScope.launch {
+        _apiUsersData.postValue(UiState.Loading())
         val response = useCase.getUsersFromApi()
-        apiUsersData.postValue(response)
+        _apiUsersData.postValue(response)
     }
 
     /**

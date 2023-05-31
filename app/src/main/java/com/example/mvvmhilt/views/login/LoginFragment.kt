@@ -22,7 +22,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
 
     private val loginViewModel: LoginViewModel by activityViewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
-    private var binding: LoginFragmentBinding? = null
+    private lateinit var binding: LoginFragmentBinding
 
     /**
      * Inflate the layout for this fragment and set [binding]
@@ -33,7 +33,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         savedInstanceState: Bundle?
     ): View {
         binding = LoginFragmentBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
     }
 
     /**
@@ -59,11 +59,11 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
 
     //user interaction listeners
     private fun setListeners() {
-        binding?.login?.setOnClickListener {
+        binding.login.setOnClickListener {
             hideKeyboard()
             loginViewModel.validate(
-                binding?.username?.text.toString(),
-                binding?.password?.text.toString()
+                binding.username.text.toString(),
+                binding.password.text.toString()
             )
         }
     }

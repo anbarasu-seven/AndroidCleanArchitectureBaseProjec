@@ -8,9 +8,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(): ViewModel() {
-    var navigate: LiveData<Boolean> = MutableLiveData()
+
+    // Inside your ViewModel
+    private val _navigate = MutableLiveData<Boolean>()
+    val navigate: LiveData<Boolean> = _navigate
 
     fun navigateTo() {
-        (navigate as MutableLiveData ).postValue(true)
+        _navigate.postValue(true)
     }
 }

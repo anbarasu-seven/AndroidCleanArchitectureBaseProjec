@@ -1,7 +1,7 @@
 package com.example.mvvmhilt.data.repos.users
 
 import com.example.mvvmhilt.data.api.UsersApi
-import com.example.mvvmhilt.data.models.Resource
+import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.models.UserResponse
 import com.example.mvvmhilt.data.repos.BaseRepo
@@ -18,7 +18,7 @@ class UsersRepoImpl @Inject constructor(
 
     override suspend fun clear() = dao.clear()
 
-    override suspend fun getUsersFromApi(): Resource<UserResponse> = safeApiCall { api.getUsers() }
+    override suspend fun getUsersFromApi(): UiState<UserResponse> = safeApiCall { api.getUsers() }
 
     override fun observeRoomUsersData() = dao.getUsers()
 

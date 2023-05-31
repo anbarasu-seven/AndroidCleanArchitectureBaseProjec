@@ -10,13 +10,16 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor() : ViewModel() {
 
-    val errorData: LiveData<String> = MutableLiveData()
-    var navigate: LiveData<Boolean> = MutableLiveData()
+    private val _errorData = MutableLiveData<String>()
+    val errorData: LiveData<String> = _errorData
+
+    private val _navigate = MutableLiveData<Boolean>()
+    var navigate: LiveData<Boolean> = _navigate
 
     fun validate(username: String, password: String) {
         val status = Validator.validateLoginInput(username, password)
-        if (status) (navigate as MutableLiveData).postValue(true)
-        else (errorData as MutableLiveData).postValue("Username and password error")
+        if (status) _navigate.postValue(true)
+        else _errorData.postValue("Username and password error")
     }
 
 }

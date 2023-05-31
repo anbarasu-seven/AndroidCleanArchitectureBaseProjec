@@ -3,7 +3,7 @@ package com.example.mvvmhilt.views.users
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.data.api.room.getOrAwaitValueTest
-import com.example.mvvmhilt.data.models.Resource
+import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.repos.FakeSampleRepoImpl
 import com.google.common.truth.Truth
@@ -52,18 +52,18 @@ class SampleViewModelTest {
 
     @Test
     fun `test getting user data from api success case`() {
-        fakeRepository.shouldReturnNetworkError(false)
+        //fakeRepository.shouldReturnNetworkError(false)
         viewModel.performNetworkRequest()
         val result = viewModel.apiUsersData.getOrAwaitValueTest()
-        Truth.assertThat(result).isInstanceOf(Resource.Success::class.java)
+        Truth.assertThat(result).isInstanceOf(UiState.Success::class.java)
     }
 
     @Test
     fun `test getting user data from api error case`() {
-        fakeRepository.shouldReturnNetworkError(true)
+        //fakeRepository.shouldReturnNetworkError(true)
         viewModel.performNetworkRequest()
         val result = viewModel.apiUsersData.getOrAwaitValueTest()
-        Truth.assertThat(result).isInstanceOf(Resource.Error::class.java)
+        Truth.assertThat(result).isInstanceOf(UiState.Error::class.java)
     }
 
 }

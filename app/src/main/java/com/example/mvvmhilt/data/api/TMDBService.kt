@@ -2,6 +2,7 @@ package com.example.mvvmhilt.data.api
 
 import com.anushka.tmdbclient.data.model.artist.ArtistList
 import com.anushka.tmdbclient.data.model.movie.MovieList
+import com.anushka.tmdbclient.data.model.tvshow.ShowsResponse
 import com.anushka.tmdbclient.data.model.tvshow.TvShowList
 import retrofit2.Response
 import retrofit2.http.GET
@@ -21,7 +22,7 @@ interface TMDBService {
         @Query(
             "api_key"
         ) apiKey: String
-    ): Response<TvShowList>
+    ): Response<ShowsResponse>
 
     @GET("person/popular")
     suspend fun getPopularArtists(

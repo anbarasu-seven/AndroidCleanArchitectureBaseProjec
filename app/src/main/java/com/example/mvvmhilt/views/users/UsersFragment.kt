@@ -9,10 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmhilt.R
-import com.example.mvvmhilt.data.models.Resource
+import com.example.mvvmhilt.common.utils.extn.showToast
+import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.databinding.FragmentSampleBinding
-import com.example.mvvmhilt.common.utils.extn.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -57,7 +57,7 @@ class UsersFragment : Fragment(R.layout.fragment_sample) {
         }
     }
 
-    private fun addClickListeners(){
+    private fun addClickListeners() {
         binding?.testGetButton?.setOnClickListener {
             sampleViewModel.performNetworkRequest()
         }
@@ -69,17 +69,20 @@ class UsersFragment : Fragment(R.layout.fragment_sample) {
     }
 
     private fun observerData() {
-
         //Set observer for webData
         sampleViewModel.apiUsersData.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Success -> {
-                    sampleViewModel.insertData(it.data?.people!!)
+                is UiState.Loading -> {
+                    //show progress bar
                 }
-                is Resource.Error -> {
-                    showToast(it.message!!)
+                is UiState.Success -> {
+                    it.data?.let {
+                        sampleViewModel.insertData(it.people)
+                    }
                 }
-                else -> {}
+                is UiState.Error -> {
+                    it.message?.let { it1 -> showToast(it1) }
+                }
             }
         }
 
