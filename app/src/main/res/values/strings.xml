@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"><u>MVVM Hilt</u></string>
+    <string name="app_name">Movies</string>
     <string name="display_fragment">Display Fragment</string>
     <string name="sample_feature">Sample Features</string>
     <string name="get_data">Get Web Data</string>
