@@ -3,7 +3,6 @@ package com.example.mvvmhilt.data.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.anushka.tmdbclient.data.model.tvshow.TvShow
-import com.example.mvvmhilt.data.models.User
 
 /**
  * Declare all entities that exists in the database
