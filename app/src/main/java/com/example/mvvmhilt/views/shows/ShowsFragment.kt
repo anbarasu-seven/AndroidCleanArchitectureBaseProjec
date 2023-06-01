@@ -13,6 +13,7 @@ import com.example.mvvmhilt.common.utils.extn.show
 import com.example.mvvmhilt.common.utils.extn.showToast
 import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.databinding.ShowsFragmentBinding
+import com.example.mvvmhilt.views.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -24,6 +25,7 @@ class ShowsFragment : Fragment(R.layout.shows_fragment) {
     private lateinit var showsAdapter: ShowsAdapter
     private lateinit var binding: ShowsFragmentBinding
     private val showsViewModel: ShowsViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     /**
      * Inflate the layout for this fragment and set [binding]
@@ -42,6 +44,7 @@ class ShowsFragment : Fragment(R.layout.shows_fragment) {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainViewModel.chageTitle(getString(R.string.shows))
         setupRecyclerViewAdapterInitially()
         displayPopularTvShows()
         showsViewModel.getTvShows()

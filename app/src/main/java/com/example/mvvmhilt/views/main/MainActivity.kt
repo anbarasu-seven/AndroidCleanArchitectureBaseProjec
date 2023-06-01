@@ -1,14 +1,16 @@
 package com.example.mvvmhilt.views.main
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.example.mvvmhilt.R
+import com.example.mvvmhilt.data.models.Route
 import com.example.mvvmhilt.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -19,7 +21,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         setObservers()
+        mainViewModel.verifyLoggin()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_custom, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val itemId: Int = item.itemId
+        if (itemId == R.id.logout) {
+            mainViewModel.logout()
+            return false
+        } else {
+            return super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        val myMenuItem = menu.findItem(R.id.logout)
+        mainViewModel.isLoggedIn.value?.let {
+            myMenuItem.isVisible = it
+        }
+        return super.onPrepareOptionsMenu(menu)
     }
 
     /**
@@ -27,9 +54,24 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setObservers() {
         mainViewModel.navigate.observe(this) {
-            findNavController(R.id.container).navigate(R.id.searchFragment, null, NavOptions.Builder()
-                .setPopUpTo(R.id.loginFragment, true)
-                .build())
+            if (it == Route.LOGIN) {
+                findNavController(R.id.container).navigate(
+                    R.id.action_showsFragment_to_loginFragment
+                )
+            } else if (it == Route.SHOWS) {
+                findNavController(R.id.container).navigate(
+                    R.id.action_loginFragment_to_showsFragment
+                )
+            }
+            mainViewModel.verifyLoggin()
+        }
+
+        mainViewModel.pageTitle.observe(this) {
+            binding.toolbarTitle.text = it
+        }
+
+        mainViewModel.isLoggedIn.observe(this) {
+            invalidateOptionsMenu()
         }
     }
 

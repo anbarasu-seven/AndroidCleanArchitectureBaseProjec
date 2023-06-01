@@ -6,22 +6,13 @@ import com.example.mvvmhilt.BuildConfig
 import com.example.mvvmhilt.common.utils.InternetStatus
 import com.example.mvvmhilt.common.utils.InternetStatusImpl
 import com.example.mvvmhilt.data.api.TMDBService
-import com.example.mvvmhilt.data.api.UsersApi
 import com.example.mvvmhilt.data.models.Config
-import com.example.mvvmhilt.data.models.Constants
+import com.example.mvvmhilt.data.repos.auth.AuthRepoImpl
 import com.example.mvvmhilt.data.repos.tvshow.ShowsRepositoryImpl
-import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowCacheDataSource
-import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowLocalDataSource
-import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRemoteDatasource
-import com.example.mvvmhilt.data.repos.tvshow.datasourceImpl.TvShowCacheDataSourceImpl
-import com.example.mvvmhilt.data.repos.tvshow.datasourceImpl.TvShowLocalDataSourceImpl
-import com.example.mvvmhilt.data.repos.tvshow.datasourceImpl.TvShowRemoteDataSourceImpl
-import com.example.mvvmhilt.data.repos.users.UsersRepoImpl
 import com.example.mvvmhilt.data.room.Database
 import com.example.mvvmhilt.data.room.TvShowDao
-import com.example.mvvmhilt.data.room.UserDao
+import com.example.mvvmhilt.domain.repos.AuthRepo
 import com.example.mvvmhilt.domain.repos.ShowsRepo
-import com.example.mvvmhilt.domain.repos.UsersRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,6 +29,13 @@ import javax.inject.Singleton
 object AppModule {
 
     /**
+     * Provide class that is responsible for knowing internet status
+     */
+    @Provides
+    @Singleton
+    fun provideContext(@ApplicationContext context: Context): Context = context
+
+    /**
      * Provides local room database as a singleton
      */
     @Singleton
@@ -47,15 +45,9 @@ object AppModule {
     ) = Room.databaseBuilder(
         app,
         Database::class.java,
-        "users-db"
+        "movies-db"
     ).fallbackToDestructiveMigration().build()
 
-    /**
-     * Provides dao to be injected into repos
-     */
-    @Singleton
-    @Provides
-    fun provideDao(database: Database): UserDao = database.getDao()
 
     /**
      * Provides dao to be injected into repos
@@ -63,17 +55,6 @@ object AppModule {
     @Singleton
     @Provides
     fun provideShowsDao(database: Database): TvShowDao = database.getTvShowDao()
-
-    @Singleton
-    @Provides
-    fun provideGithubService(okHttpClient: OkHttpClient): UsersApi {
-        return Retrofit.Builder()
-            .baseUrl(Constants.WEB_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-            .create(UsersApi::class.java)
-    }
 
     @Singleton
     @Provides
@@ -106,34 +87,18 @@ object AppModule {
     }
 
     /**
-     * Provide class that is responsible for knowing internet status
+     * Provide class that is responsible for knowing ts shows
      */
-    @Provides
-    @Singleton
-    fun provideSampleRepoInterface(apis: UsersApi, dao: UserDao): UsersRepo {
-        return UsersRepoImpl(apis, dao)
-    }
-
     @Provides
     @Singleton
     fun provideShowsRepo(showsRepo: ShowsRepositoryImpl): ShowsRepo = showsRepo
 
+    /**
+     * Provide class that is responsible for auth
+     */
     @Provides
     @Singleton
-    fun provideShowsLocalDataSource(localDataSource: TvShowLocalDataSourceImpl):
-            TvShowLocalDataSource = localDataSource
-
-    @Provides
-    @Singleton
-    fun provideShowsRemoteDataSource(
-        remoteDatasource: TvShowRemoteDataSourceImpl
-    ): TvShowRemoteDatasource = remoteDatasource
-
-    @Provides
-    @Singleton
-    fun provideShowsCacheDataSource(
-        cacheDatasource: TvShowCacheDataSourceImpl
-    ): TvShowCacheDataSource = cacheDatasource
+    fun provideAuthRepo(authRepo: AuthRepoImpl): AuthRepo = authRepo
 
     @Provides
     @Singleton

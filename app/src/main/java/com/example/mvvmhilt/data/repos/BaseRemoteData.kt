@@ -11,7 +11,7 @@ import okio.IOException
 import retrofit2.HttpException
 import retrofit2.Response
 
-abstract class BaseRepo() {
+abstract class BaseRemoteData {
 
     // we'll use this function in all
     // repos to handle api errors.
@@ -36,7 +36,9 @@ abstract class BaseRepo() {
                     // response in ExampleErrorResponse pojo
                     val errorResponse: ErrorResponse? = convertErrorBody(response.errorBody())
                     // Simply returning api's own failure message
-                    UiState.Error(errorMessage = errorResponse?.failureMessage ?: "Something went wrong")
+                    UiState.Error(
+                        errorMessage = errorResponse?.failureMessage ?: "Something went wrong"
+                    )
                 }
 
             } catch (e: HttpException) {

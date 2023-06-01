@@ -18,6 +18,5 @@ import com.example.mvvmhilt.data.models.User
 )
 
 abstract class Database : RoomDatabase() {
-    abstract fun getDao(): UserDao
     abstract fun getTvShowDao(): TvShowDao
 }

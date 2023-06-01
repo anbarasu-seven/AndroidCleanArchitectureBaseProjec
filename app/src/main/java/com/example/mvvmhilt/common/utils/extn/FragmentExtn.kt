@@ -4,6 +4,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 
 fun Fragment.close() = fragmentManager?.popBackStack()
 
@@ -19,6 +20,11 @@ fun Fragment.showToast(message: String) {
     ).show()
 }
 
+fun Fragment.showSnackbar(message: String) {
+    view?.let {
+        Snackbar.make(it, message, Snackbar.LENGTH_SHORT).show()
+    }
+}
 
 fun Fragment.hideKeyboard() {
     val token = requireActivity().currentFocus?.windowToken

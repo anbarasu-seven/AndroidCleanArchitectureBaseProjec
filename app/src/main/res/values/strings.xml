@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movies</string>
+    <string name="app_name">Movies App</string>
     <string name="display_fragment">Display Fragment</string>
     <string name="sample_feature">Sample Features</string>
     <string name="get_data">Get Web Data</string>
@@ -8,4 +8,5 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="shows">Running shows</string>
 </resources>

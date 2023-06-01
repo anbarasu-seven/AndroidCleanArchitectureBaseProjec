@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.example.mvvmhilt.R
 import com.example.mvvmhilt.common.utils.extn.hideKeyboard
-import com.example.mvvmhilt.common.utils.extn.showToast
+import com.example.mvvmhilt.common.utils.extn.showSnackbar
 import com.example.mvvmhilt.databinding.LoginFragmentBinding
 import com.example.mvvmhilt.views.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +40,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainViewModel.chageTitle(getString(R.string.login))
         setObservers()
         setListeners()
     }
@@ -50,10 +50,14 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
      */
     private fun setObservers() {
         loginViewModel.errorData.observe(viewLifecycleOwner) {
-            showToast(it)
+            it.getContentIfNotHandled()?.run {
+                showSnackbar(this)
+            }
         }
         loginViewModel.navigate.observe(viewLifecycleOwner) {
-            mainViewModel.navigateTo()
+            it.getContentIfNotHandled()?.run {
+              mainViewModel.navigateTo(this)
+            }
         }
     }
 
