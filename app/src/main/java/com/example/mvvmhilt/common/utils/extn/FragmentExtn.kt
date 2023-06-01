@@ -20,6 +20,10 @@ fun Fragment.showToast(message: String) {
     ).show()
 }
 
+/**
+ * This extension function display a string as a snack bar msg in fragment
+ *@param message user-defined message
+ */
 fun Fragment.showSnackbar(message: String) {
     view?.let {
         Snackbar.make(it, message, Snackbar.LENGTH_SHORT).show()

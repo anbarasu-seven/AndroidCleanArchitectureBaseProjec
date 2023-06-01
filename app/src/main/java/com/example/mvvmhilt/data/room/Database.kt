@@ -10,7 +10,6 @@ import com.example.mvvmhilt.data.models.User
  */
 @Database(
     entities = [
-        User::class,
         TvShow::class
     ],
     version = 1,
