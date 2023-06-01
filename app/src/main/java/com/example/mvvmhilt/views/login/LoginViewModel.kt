@@ -15,7 +15,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase,
+    private val validator: Validator
+) : ViewModel() {
 
     private val _errorData = MutableLiveData<Event<String>>()
     val errorData: LiveData<Event<String>> = _errorData
@@ -24,7 +27,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
     var navigate: LiveData<Event<String>> = _navigate
 
     fun validate(username: String, password: String) {
-        val status = Validator.validateLoginInput(username, password)
+        val status = validator.validateLoginInput(username, password)
         if (!status) {
             _errorData.postValue(Event("Username should be 6 char, Password should be 6 char and might include 2 digit"))
             return

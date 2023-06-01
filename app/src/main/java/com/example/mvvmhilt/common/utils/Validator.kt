@@ -1,6 +1,8 @@
 package com.example.mvvmhilt.common.utils
 
-object Validator {
+import javax.inject.Inject
+
+class Validator @Inject constructor() {
 
     /**
      * the input is not valid if...
