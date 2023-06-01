@@ -30,7 +30,12 @@ abstract class BaseRemoteData {
                     // In case of success response we
                     // are returning Resource.Success object
                     // by passing our data in it.
-                    UiState.Success(data = response.body()!!)
+                    response.body()?.let {
+                        UiState.Success(data = it)
+                    }
+                    UiState.Error(
+                        errorMessage = "Something went wrong"
+                    )
                 } else {
                     // parsing api's own custom json error
                     // response in ExampleErrorResponse pojo

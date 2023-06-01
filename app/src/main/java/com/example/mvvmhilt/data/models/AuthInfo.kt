@@ -4,8 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * Sample data class
- * Ensure each entry is unique
+ * Auth data sample
  */
 
 data class AuthInfo(

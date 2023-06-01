@@ -5,5 +5,5 @@ import com.example.mvvmhilt.data.models.UiState
 
 interface ShowsRepo {
     suspend fun getTvShows(): UiState<TvShowList>?
-    suspend fun deleteShows(): Unit
+    suspend fun deleteShows()
 }
