@@ -64,9 +64,9 @@ class ShowsFragment : Fragment(R.layout.shows_fragment) {
                         binding.tvProgressBar.show()
                     }
                     is UiState.Success -> {
-                        it.data?.let { items ->
+                        it.data?.let { result ->
                             showsAdapter.apply {
-                                setList(items.shows)
+                                setList(result.tvShows)
                                 notifyDataSetChanged()
                             }
                         }

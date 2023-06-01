@@ -10,11 +10,14 @@ import dagger.hilt.android.scopes.FragmentScoped
 
 
 @FragmentScoped
-class ShowsAdapter(val tvList: ArrayList<TvShow>) : RecyclerView.Adapter<ShowsAdapter.ShowsHolder>() {
+class ShowsAdapter(val tvList: ArrayList<TvShow>) :
+    RecyclerView.Adapter<ShowsAdapter.ShowsHolder>() {
 
-    fun setList(tvShows: List<TvShow>) {
-        tvList.clear()
-        tvList.addAll(tvShows)
+    fun setList(tvShows: List<TvShow>?) {
+        if (tvShows != null) {
+            tvList.clear()
+            tvList.addAll(tvShows)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowsHolder {

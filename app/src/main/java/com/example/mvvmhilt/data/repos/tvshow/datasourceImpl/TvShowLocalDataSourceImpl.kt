@@ -7,16 +7,21 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TvShowLocalDataSourceImpl @Inject constructor (private val tvDao:TvShowDao):
     TvShowLocalDataSource {
     override suspend fun getTvShowsFromDB(): List<TvShow> {
        return tvDao.getTvShows()
     }
 
-    override suspend fun saveTvShowsToDB(tvShows: List<TvShow>) {
+    override suspend fun saveTvShowsToDB(tvShows: List<TvShow>?) {
         CoroutineScope(Dispatchers.IO).launch {
-            tvDao.saveTvShows(tvShows)
+            tvShows?.let {
+                tvDao.saveTvShows(tvShows)
+            }
+
         }
     }
 

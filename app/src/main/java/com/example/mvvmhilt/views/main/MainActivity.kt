@@ -3,7 +3,9 @@ package com.example.mvvmhilt.views.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.mvvmhilt.R
 import com.example.mvvmhilt.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +27,9 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setObservers() {
         mainViewModel.navigate.observe(this) {
-            findNavController(R.id.container).navigate(R.id.searchFragment)
+            findNavController(R.id.container).navigate(R.id.searchFragment, null, NavOptions.Builder()
+                .setPopUpTo(R.id.loginFragment, true)
+                .build())
         }
     }
 

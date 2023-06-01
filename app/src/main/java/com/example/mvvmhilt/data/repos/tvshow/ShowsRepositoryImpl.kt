@@ -1,8 +1,7 @@
 package com.example.mvvmhilt.data.repos.tvshow
 
-import com.anushka.tmdbclient.data.model.tvshow.ShowsResponse
 import com.anushka.tmdbclient.data.model.tvshow.TvShow
-import com.example.mvvmhilt.common.utils.InternetStatus
+import com.anushka.tmdbclient.data.model.tvshow.TvShowList
 import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowCacheDataSource
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowLocalDataSource
@@ -10,55 +9,57 @@ import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRemoteDatasource
 import com.example.mvvmhilt.domain.repos.ShowsRepo
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ShowsRepositoryImpl @Inject constructor(
     private val tvShowRemoteDatasource: TvShowRemoteDatasource,
     private val tvShowLocalDataSource: TvShowLocalDataSource,
     private val tvShowCacheDataSource: TvShowCacheDataSource,
-    private val internetStatus: InternetStatus
 ) : ShowsRepo {
 
-    override suspend fun getTvShows(): UiState<ShowsResponse>? {
-        val result = if (internetStatus.isConnected()) {
-            updateTvShows()
-        } else {
-            getTvShowsFromDB()
-        }
-        return result
-    }
+    //get tv shows generic
+    override suspend fun getTvShows(): UiState<TvShowList>? = getTvShowsFromAPI()
 
-    override suspend fun updateTvShows(): UiState<ShowsResponse>? {
-        val newListOfTvShows = getTvShowsFromAPI()
+    //delete local copy of tv shows
+    override suspend fun deleteShows(): Unit {
         tvShowLocalDataSource.clearAll()
-        newListOfTvShows.data?.apply {
-            tvShowLocalDataSource.saveTvShowsToDB(shows)
-            tvShowCacheDataSource.saveTvShowsToCache(shows)
+        tvShowCacheDataSource.clearAll()
+    }
+
+    //retrieve shows from remote data source
+    suspend fun getTvShowsFromAPI(): UiState<TvShowList> {
+        val results = tvShowRemoteDatasource.getTvShows()
+        results.data?.let {
+            it.let { list ->
+                tvShowLocalDataSource.saveTvShowsToDB(it.tvShows)
+                tvShowCacheDataSource.saveTvShowsToCache(it.tvShows)
+            }
+
         }
-        return newListOfTvShows
+        return results
     }
 
-    suspend fun getTvShowsFromAPI(): UiState<ShowsResponse> {
-        return tvShowRemoteDatasource.getTvShows()
-    }
-
-    suspend fun getTvShowsFromDB(): UiState<ShowsResponse> {
+    //retrieve shows from remote data source, if internet is not available
+    suspend fun getTvShowsFromDB(): UiState<TvShowList> {
         lateinit var tvShowsList: List<TvShow>
         try {
             tvShowsList = tvShowLocalDataSource.getTvShowsFromDB()
         } catch (exception: Exception) {
             Timber.tag("MyTag").i(exception.message.toString())
         }
-        return UiState.Success(ShowsResponse(tvShowsList))
+        return UiState.Success(TvShowList(tvShowsList))
     }
 
-    suspend fun getTvShowsFromCache(): UiState<ShowsResponse> {
+    //local copy of same tv shows list, app level runtime scoped cache
+    suspend fun getTvShowsFromCache(): UiState<TvShowList> {
         lateinit var tvShowsList: List<TvShow>
         try {
             tvShowsList = tvShowCacheDataSource.getTvShowsFromCache()
         } catch (exception: Exception) {
             Timber.tag("MyTag").i(exception.message.toString())
         }
-        return UiState.Success(ShowsResponse(tvShowsList))
+        return UiState.Success(TvShowList(tvShowsList))
     }
 
 
