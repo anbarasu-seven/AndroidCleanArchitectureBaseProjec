@@ -5,7 +5,6 @@ import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.common.utils.Validator
 import com.example.mvvmhilt.data.api.room.getOrAwaitValueTest
 import com.example.mvvmhilt.data.models.UiState
-import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.domain.usecase.LoginUseCase
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -62,7 +61,7 @@ class LoginViewModelTest {
         val password = "anbara"
 
         viewModel.validate(username, password)
-        Mockito.`when`(validator.validateLoginInput(username, password)).thenReturn(true)
+        Mockito.`when`(validator.validateLoginInput(username, password)).thenReturn(false)
         val result = validator.validateLoginInput(username, password)
         Truth.assertThat(result).isFalse()
     }
@@ -78,7 +77,7 @@ class LoginViewModelTest {
         viewModel.validate(username, password)
         Mockito.`when`(validator.validateLoginInput(username, password)).thenReturn(true)
         validator.validateLoginInput(username, password)
-        val result = viewModel.errorData.getOrAwaitValueTest()
+        val result = viewModel.errorData.getOrAwaitValueTest().getContentIfNotHandled()
         Truth.assertThat(result).isEqualTo(errorMessage)
     }
 

@@ -6,7 +6,6 @@ import com.example.mvvmhilt.common.utils.Validator
 import com.example.mvvmhilt.data.api.room.getOrAwaitValueTest
 import com.example.mvvmhilt.data.models.AuthInfo
 import com.example.mvvmhilt.data.models.UiState
-import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.domain.repos.AuthRepo
 import com.example.mvvmhilt.domain.usecase.LoginUseCase
 import com.google.common.truth.Truth

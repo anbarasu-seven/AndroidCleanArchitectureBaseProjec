@@ -6,7 +6,6 @@ import com.example.mvvmhilt.common.utils.Validator
 import com.example.mvvmhilt.data.api.room.getOrAwaitValueTest
 import com.example.mvvmhilt.data.models.AuthInfo
 import com.example.mvvmhilt.data.models.UiState
-import com.example.mvvmhilt.data.models.User
 import com.example.mvvmhilt.data.repos.auth.AuthRepoImpl
 import com.example.mvvmhilt.data.repos.auth.datasource.AuthPrefrenceDataSource
 import com.example.mvvmhilt.domain.repos.AuthRepo
@@ -35,7 +34,7 @@ class AuthRepoTest {
     @get:Rule
     val mainCoroutineRule = MainCoroutineRule()
 
-    @InjectMocks
+    @Mock
     lateinit var authPrefrenceDataSource: AuthPrefrenceDataSource
 
     private lateinit var authRepoImpl: AuthRepoImpl
