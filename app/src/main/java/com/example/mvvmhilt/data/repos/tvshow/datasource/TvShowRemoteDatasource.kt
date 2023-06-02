@@ -1,6 +1,6 @@
 package com.example.mvvmhilt.data.repos.tvshow.datasource
 
-import com.anushka.tmdbclient.data.model.tvshow.TvShowList
+import com.example.mvvmhilt.data.models.tvshow.TvShowList
 import com.example.mvvmhilt.data.api.TMDBService
 import com.example.mvvmhilt.data.models.Config
 import com.example.mvvmhilt.data.models.UiState

@@ -1,6 +1,6 @@
 package com.example.mvvmhilt.data.repos.tvshow.datasource
 
-import com.anushka.tmdbclient.data.model.tvshow.TvShow
+import com.example.mvvmhilt.data.models.tvshow.TvShow
 import com.example.mvvmhilt.data.room.TvShowDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -3,7 +3,7 @@ package com.example.mvvmhilt.views.shows
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.anushka.tmdbclient.data.model.tvshow.TvShow
+import com.example.mvvmhilt.data.models.tvshow.TvShow
 import com.example.mvvmhilt.common.utils.extn.loadFromUrl
 import com.example.mvvmhilt.databinding.ListItemBinding
 import dagger.hilt.android.scopes.FragmentScoped

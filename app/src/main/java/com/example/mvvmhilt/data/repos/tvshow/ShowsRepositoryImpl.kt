@@ -1,10 +1,10 @@
 package com.example.mvvmhilt.data.repos.tvshow
 
-import com.anushka.tmdbclient.data.model.tvshow.TvShow
-import com.anushka.tmdbclient.data.model.tvshow.TvShowList
+import com.example.mvvmhilt.data.models.tvshow.TvShow
+import com.example.mvvmhilt.data.models.tvshow.TvShowList
 import com.example.mvvmhilt.data.models.UiState
-import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRoomDataSource
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRemoteDatasource
+import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRoomDataSource
 import com.example.mvvmhilt.domain.repos.ShowsRepo
 import timber.log.Timber
 import javax.inject.Inject
@@ -27,11 +27,12 @@ class ShowsRepositoryImpl @Inject constructor(
     //retrieve shows from remote data source
     suspend fun getTvShowsFromAPI(): UiState<TvShowList> {
         val results = tvShowRemoteDatasource.getTvShows()
-        results.data?.let {
-            it.let { list ->
-                tvShowLocalDataSource.saveTvShowsToDB(it.tvShows)
+        results.let {
+            it.data?.let { list ->
+                tvShowLocalDataSource.saveTvShowsToDB(list.tvShows)
             }
         }
+
         return results
     }
 

@@ -1,7 +1,6 @@
-package com.anushka.tmdbclient.data.model.tvshow
+package com.example.mvvmhilt.data.models.tvshow
 
 
-import com.anushka.tmdbclient.data.model.tvshow.TvShow
 import com.google.gson.annotations.SerializedName
 
 data class TvShowList(

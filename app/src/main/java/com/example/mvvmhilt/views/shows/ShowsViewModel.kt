@@ -1,7 +1,7 @@
 package com.example.mvvmhilt.views.shows
 
 import androidx.lifecycle.*
-import com.anushka.tmdbclient.data.model.tvshow.TvShowList
+import com.example.mvvmhilt.data.models.tvshow.TvShowList
 import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.domain.usecase.GetShowsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

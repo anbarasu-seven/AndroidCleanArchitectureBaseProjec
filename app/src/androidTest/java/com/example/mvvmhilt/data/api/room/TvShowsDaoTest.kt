@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.anushka.tmdbclient.data.model.tvshow.TvShow
+import com.example.mvvmhilt.data.models.tvshow.TvShow
 import com.example.mvvmhilt.data.room.Database
 import com.example.mvvmhilt.data.room.TvShowDao
 import com.google.common.truth.Truth.assertThat

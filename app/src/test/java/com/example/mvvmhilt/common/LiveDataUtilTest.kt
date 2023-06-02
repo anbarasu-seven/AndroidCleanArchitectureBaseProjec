@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.data.api.room
+package com.example.mvvmhilt.common
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

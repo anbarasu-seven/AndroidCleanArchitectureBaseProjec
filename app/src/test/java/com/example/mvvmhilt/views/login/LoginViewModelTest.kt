@@ -3,8 +3,7 @@ package com.example.mvvmhilt.views.login
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.common.utils.Validator
-import com.example.mvvmhilt.data.api.room.getOrAwaitValueTest
-import com.example.mvvmhilt.data.models.UiState
+import com.example.mvvmhilt.common.getOrAwaitValueTest
 import com.example.mvvmhilt.domain.usecase.LoginUseCase
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,11 +11,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.validateMockitoUsage
-import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
