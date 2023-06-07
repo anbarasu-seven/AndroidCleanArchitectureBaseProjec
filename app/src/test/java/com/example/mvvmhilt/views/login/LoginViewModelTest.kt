@@ -3,10 +3,10 @@ package com.example.mvvmhilt.views.login
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.common.utils.Validator
-import com.example.mvvmhilt.common.getOrAwaitValueTest
 import com.example.mvvmhilt.domain.usecase.LoginUseCase
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -68,13 +68,17 @@ class LoginViewModelTest {
         val username = "anba"
         val password = "anbara"
         val errorMessage =
-            "Username should be 6 char, Password should be 6 char and might include 2 digit"
+            "Username should be 6 char, Password should be 6 char and must include 2 digit"
 
         viewModel.validate(username, password)
         Mockito.`when`(validator.validateLoginInput(username, password)).thenReturn(true)
         validator.validateLoginInput(username, password)
-        val result = viewModel.errorData.getOrAwaitValueTest().getContentIfNotHandled()
-        Truth.assertThat(result).isEqualTo(errorMessage)
+        runBlocking {
+            viewModel.errorData.collect { result ->
+                Truth.assertThat(result).isEqualTo(errorMessage)
+            }
+        }
+
     }
 
 }

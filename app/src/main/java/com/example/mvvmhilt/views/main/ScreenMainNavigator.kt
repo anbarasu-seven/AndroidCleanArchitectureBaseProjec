@@ -18,7 +18,7 @@ fun ScreenMainNavigator() {
             LoginPage(navController = navController)
         }
 
-        composable(Routes.Dashboard.route) {
+        composable(Routes.Shows.route) {
             ShowsCompose(navController = navController)
         }
 

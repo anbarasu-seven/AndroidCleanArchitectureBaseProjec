@@ -22,8 +22,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.mvvmhilt.data.models.Route
 import com.example.mvvmhilt.data.models.Routes
-import com.example.mvvmhilt.views.main.MainViewModel
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
 @OptIn(DelicateCoroutinesApi::class)
@@ -59,7 +57,7 @@ fun LoginPage(navController: NavHostController, loginViewModel: LoginViewModel =
                 .navigate
                 .collect { message ->
                     if(message == Route.SHOWS){
-                        navController.navigate(Routes.Dashboard.route)
+                        navController.navigate(Routes.Shows.route)
                     }
                 }
         }
