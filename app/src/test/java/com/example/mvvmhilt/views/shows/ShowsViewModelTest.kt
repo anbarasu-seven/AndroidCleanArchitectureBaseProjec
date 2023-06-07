@@ -1,6 +1,7 @@
 package com.example.mvvmhilt.views.shows
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.compose.runtime.collectAsState
 import com.example.mvvmhilt.data.models.tvshow.TvShow
 import com.example.mvvmhilt.data.models.tvshow.TvShowList
 import com.example.mvvmhilt.MainCoroutineRule
@@ -43,7 +44,7 @@ class ShowsViewModelTest {
         runBlocking {
             Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(UiState.Loading())
             showsViewModel.getTvShows()
-            val result = showsViewModel.tvShows.getOrAwaitValueTest()
+            val result = showsViewModel.tvShows.value
             Truth.assertThat(result).isInstanceOf(UiState.Loading::class.java)
         }
     }
@@ -54,7 +55,7 @@ class ShowsViewModelTest {
             val testData = TvShowList(listOf())
             Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(UiState.Success(testData))
             showsViewModel.getTvShows()
-            val result = showsViewModel.tvShows.getOrAwaitValueTest()
+            val result = showsViewModel.tvShows.value
             Truth.assertThat(result).isInstanceOf(UiState.Success::class.java)
         }
     }
@@ -65,7 +66,7 @@ class ShowsViewModelTest {
             val testData = TvShowList(listOf())
             Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(UiState.Success(testData))
             showsViewModel.getTvShows()
-            val result = showsViewModel.tvShows.getOrAwaitValueTest()
+            val result = showsViewModel.tvShows.value
             Truth.assertThat(result?.data?.tvShows).isEmpty()
         }
     }
@@ -79,7 +80,7 @@ class ShowsViewModelTest {
             val testData = TvShowList(list)
             Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(UiState.Success(testData))
             showsViewModel.getTvShows()
-            val result = showsViewModel.tvShows.getOrAwaitValueTest()
+            val result = showsViewModel.tvShows.value
             Truth.assertThat(result?.data?.tvShows).containsExactly(item1, item2)
         }
     }

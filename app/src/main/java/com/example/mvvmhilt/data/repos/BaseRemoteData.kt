@@ -32,8 +32,7 @@ abstract class BaseRemoteData {
                     // by passing our data in it.
                     response.body()?.let {
                         UiState.Success(data = it)
-                    }
-                    UiState.Error(
+                    } ?: UiState.Error(
                         errorMessage = "Something went wrong"
                     )
                 } else {

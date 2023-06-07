@@ -2,6 +2,7 @@
 buildscript {
     dependencies {
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.44")
+        classpath 'com.android.tools.build:gradle:7.0.3'
     }
 }
 
@@ -9,7 +10,7 @@ plugins {
     id 'com.android.application' version '7.2.1' apply false
     id 'com.android.library' version '7.2.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
-    id 'org.jetbrains.kotlin.plugin.allopen' version '1.8.21' apply false
+    id 'org.jetbrains.kotlin.plugin.allopen' version '1.8.20' apply false
     id 'org.jetbrains.kotlinx.kover' version '0.5.0' apply false
 }
 

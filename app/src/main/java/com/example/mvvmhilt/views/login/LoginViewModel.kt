@@ -11,6 +11,8 @@ import com.example.mvvmhilt.data.models.Route
 import com.example.mvvmhilt.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,22 +22,22 @@ class LoginViewModel @Inject constructor(
     private val validator: Validator
 ) : ViewModel() {
 
-    private val _errorData = MutableLiveData<Event<String>>()
-    val errorData: LiveData<Event<String>> = _errorData
+    private val _errorData = MutableSharedFlow<String>()
+    val errorData: SharedFlow<String> = _errorData
 
-    private val _navigate = MutableLiveData<Event<String>>()
-    var navigate: LiveData<Event<String>> = _navigate
+    private val _navigate = MutableSharedFlow<String>()
+    var navigate: SharedFlow<String> = _navigate
 
     fun validate(username: String, password: String) {
-        val status = validator.validateLoginInput(username, password)
-        if (!status) {
-            _errorData.postValue(Event("Username should be 6 char, Password should be 6 char and might include 2 digit"))
-            return
-        }
         viewModelScope.launch {
-            val result = async { loginUseCase.execute(AuthInfo(username, password)) }.await()
-            if (result) {
-                _navigate.postValue(Event(Route.SHOWS))
+            val status = validator.validateLoginInput(username, password)
+            if(!status){
+                _errorData.emit("Username should be 6 char, Password should be 6 char and must include 2 digit")
+            }else{
+                val result = async { loginUseCase.execute(AuthInfo(username, password)) }.await()
+                if (result) {
+                    _navigate.emit(Route.SHOWS)
+                }
             }
         }
     }
