@@ -1,7 +1,7 @@
 package com.example.mvvmhilt.data.repos.tvshow.datasource
 
 import com.example.mvvmhilt.data.models.tvshow.TvShowList
-import com.example.mvvmhilt.data.api.TMDBService
+import com.example.mvvmhilt.data.setups.api.TMDBService
 import com.example.mvvmhilt.data.models.Config
 import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.data.repos.BaseRemoteData

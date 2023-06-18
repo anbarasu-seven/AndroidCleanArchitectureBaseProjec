@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.mvvmhilt.views.login.LoginFragment"
+        android:name="com.example.mvvmhilt.ui.login.LoginFragment"
         android:label="Login">
         <action
             android:id="@+id/action_loginFragment_to_showsFragment"
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/showsFragment"
-        android:name="com.example.mvvmhilt.views.shows.ShowsFragment"
+        android:name="com.example.mvvmhilt.ui.shows.ShowsFragment"
         android:label="Shows">
         <action
             android:id="@+id/action_showsFragment_to_loginFragment"

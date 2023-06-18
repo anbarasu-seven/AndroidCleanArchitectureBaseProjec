@@ -5,7 +5,6 @@ import com.example.mvvmhilt.data.models.tvshow.TvShowList
 import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRemoteDatasource
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRoomDataSource
-import com.example.mvvmhilt.domain.repos.ShowsRepo
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton

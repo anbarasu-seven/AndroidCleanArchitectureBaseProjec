@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.data.models.AuthInfo
 import com.example.mvvmhilt.data.repos.auth.AuthRepoImpl
-import com.example.mvvmhilt.data.repos.auth.datasource.AuthPrefrenceDataSource
+import com.example.mvvmhilt.data.repos.auth.datasource.AuthLocalDataSource
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -27,7 +27,7 @@ class AuthRepoImplTest {
     val mainCoroutineRule = MainCoroutineRule()
 
     @Mock
-    lateinit var authPrefrenceDataSource: AuthPrefrenceDataSource
+    lateinit var authPrefrenceDataSource: AuthLocalDataSource
 
     private lateinit var authRepoImpl: AuthRepoImpl
 

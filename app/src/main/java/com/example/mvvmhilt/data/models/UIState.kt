@@ -11,7 +11,7 @@ sealed class UiState<T>(
 
     // We'll pass error message wrapped in this 'Error'
     // class to the UI in case of failure response
-    class Error<T>(errorMessage: String) : UiState<T>(message = errorMessage)
+    class Error<T>(message: String) : UiState<T>(message = message)
 
     // We'll just pass object of this Loading
     // class, just before making an api call

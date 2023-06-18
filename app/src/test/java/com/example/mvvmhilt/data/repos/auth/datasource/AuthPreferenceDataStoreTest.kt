@@ -3,7 +3,7 @@ package com.example.mvvmhilt.data.repos.auth.datasource
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.data.models.AuthInfo
-import com.example.mvvmhilt.data.pref.PreferenceManager
+import com.example.mvvmhilt.data.setups.pref.PreferenceManager
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -28,11 +28,11 @@ class AuthPreferenceDataStoreTest {
     @Mock
     lateinit var preferenceManager: PreferenceManager
 
-    private lateinit var authPrefrenceDataSource: AuthPrefrenceDataSource
+    private lateinit var authPrefrenceDataSource: AuthLocalDataSource
 
     @Before
     fun setup() {
-        authPrefrenceDataSource = AuthPrefrenceDataSource(preferenceManager)
+        authPrefrenceDataSource = AuthLocalDataSource(preferenceManager)
     }
 
     @Test

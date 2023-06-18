@@ -3,7 +3,7 @@ package com.example.mvvmhilt.domain.usecase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.data.models.AuthInfo
-import com.example.mvvmhilt.domain.repos.AuthRepo
+import com.example.mvvmhilt.data.repos.auth.AuthRepo
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking

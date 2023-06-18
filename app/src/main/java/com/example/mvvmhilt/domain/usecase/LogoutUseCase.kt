@@ -1,7 +1,6 @@
 package com.example.mvvmhilt.domain.usecase
 
-import com.example.mvvmhilt.data.models.AuthInfo
-import com.example.mvvmhilt.domain.repos.AuthRepo
+import com.example.mvvmhilt.data.repos.auth.AuthRepo
 import javax.inject.Inject
 import javax.inject.Singleton
 
