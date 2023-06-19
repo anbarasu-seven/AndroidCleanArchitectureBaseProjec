@@ -1,11 +1,11 @@
-package com.example.mvvmhilt.ui.shows
+package com.example.mvvmhilt.presenter.shows
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.data.models.tvshow.TvShow
 import com.example.mvvmhilt.data.models.tvshow.TvShowList
 import com.example.mvvmhilt.MainCoroutineRule
 import com.example.mvvmhilt.common.getOrAwaitValueTest
-import com.example.mvvmhilt.data.models.UiState
+import com.example.mvvmhilt.data.models.DataState
 import com.example.mvvmhilt.domain.usecase.GetShowsUseCase
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -41,10 +41,10 @@ class ShowsViewModelTest {
     @Test
     fun `get tv shows function in ShowsViewModel should post LOADING state initially`() {
         runBlocking {
-            Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(UiState.Loading())
+            Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(DataState.Loading())
             showsViewModel.getTvShows()
             val result = showsViewModel.tvShows.getOrAwaitValueTest()
-            Truth.assertThat(result).isInstanceOf(UiState.Loading::class.java)
+            Truth.assertThat(result).isInstanceOf(DataState.Loading::class.java)
         }
     }
 
@@ -52,10 +52,10 @@ class ShowsViewModelTest {
     fun `get tv shows function in ShowsViewModel should return SUCCESS state`() {
         runBlocking {
             val testData = TvShowList(listOf())
-            Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(UiState.Success(testData))
+            Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(DataState.Success(testData))
             showsViewModel.getTvShows()
             val result = showsViewModel.tvShows.getOrAwaitValueTest()
-            Truth.assertThat(result).isInstanceOf(UiState.Success::class.java)
+            Truth.assertThat(result).isInstanceOf(DataState.Success::class.java)
         }
     }
 
@@ -63,7 +63,7 @@ class ShowsViewModelTest {
     fun `get tv shows function in ShowsViewModel should return SUCCESS state with empty tv shows list`() {
         runBlocking {
             val testData = TvShowList(listOf())
-            Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(UiState.Success(testData))
+            Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(DataState.Success(testData))
             showsViewModel.getTvShows()
             val result = showsViewModel.tvShows.getOrAwaitValueTest()
             Truth.assertThat(result?.data?.tvShows).isEmpty()
@@ -77,7 +77,7 @@ class ShowsViewModelTest {
             val item2 = TvShow("name2", 2, name = "Name", overview = "overview", posterPath = "//path")
             val list = listOf(item1, item2)
             val testData = TvShowList(list)
-            Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(UiState.Success(testData))
+            Mockito.`when`(getTvShowsUseCase.execute()).thenReturn(DataState.Success(testData))
             showsViewModel.getTvShows()
             val result = showsViewModel.tvShows.getOrAwaitValueTest()
             Truth.assertThat(result?.data?.tvShows).containsExactly(item1, item2)

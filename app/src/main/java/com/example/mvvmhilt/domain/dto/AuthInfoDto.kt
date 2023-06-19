@@ -1,7 +1,5 @@
 package com.example.mvvmhilt.domain.dto
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.example.mvvmhilt.data.models.AuthInfo
 
 /**
@@ -13,4 +11,4 @@ data class AuthInfoDto(
     val password: String
 )
 
-fun AuthInfoDto.toAuthInfo() : AuthInfo = AuthInfo(name, password)
+

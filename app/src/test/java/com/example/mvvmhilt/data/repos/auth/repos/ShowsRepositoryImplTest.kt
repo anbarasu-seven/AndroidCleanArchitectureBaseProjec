@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.data.models.tvshow.TvShow
 import com.example.mvvmhilt.data.models.tvshow.TvShowList
 import com.example.mvvmhilt.MainCoroutineRule
-import com.example.mvvmhilt.data.models.UiState
+import com.example.mvvmhilt.data.models.DataState
 import com.example.mvvmhilt.data.repos.tvshow.ShowsRepositoryImpl
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRemoteDatasource
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRoomDataSource
@@ -46,7 +46,7 @@ class ShowsRepositoryImplTest {
     fun `make sure calling get tv shows make api call once`() {
         runBlocking {
             Mockito.`when`(tvShowRemoteDatasource.getTvShows())
-                .thenReturn(UiState.Success(TvShowList(listOf())))
+                .thenReturn(DataState.Success(TvShowList(listOf())))
             showsRepositoryImpl.getTvShowsFromAPI()
             Mockito.verify(tvShowRemoteDatasource, Mockito.times(1)).getTvShows()
         }
@@ -61,7 +61,7 @@ class ShowsRepositoryImplTest {
             val list = listOf(item1, item2)
 
             Mockito.`when`(tvShowRemoteDatasource.getTvShows())
-                .thenReturn(UiState.Success(TvShowList(list)))
+                .thenReturn(DataState.Success(TvShowList(list)))
             val result = showsRepositoryImpl.getTvShowsFromAPI()
             Truth.assertThat(result.data?.tvShows).isEqualTo(list)
         }
@@ -71,7 +71,7 @@ class ShowsRepositoryImplTest {
     fun `make sure calling get tv shows make api call once and save retrieved data db once`() {
         runBlocking {
             Mockito.`when`(tvShowRemoteDatasource.getTvShows())
-                .thenReturn(UiState.Success(TvShowList(listOf())))
+                .thenReturn(DataState.Success(TvShowList(listOf())))
             showsRepositoryImpl.getTvShowsFromAPI()
             Mockito.verify(tvShowLocalDataSource, Mockito.times(1)).saveTvShowsToDB(listOf())
         }

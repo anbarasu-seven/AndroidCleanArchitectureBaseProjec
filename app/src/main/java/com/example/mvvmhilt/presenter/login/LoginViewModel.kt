@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.ui.login
+package com.example.mvvmhilt.presenter.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.mvvmhilt.common.utils.Validator
 import com.example.mvvmhilt.domain.dto.AuthInfoDto
 import com.example.mvvmhilt.domain.usecase.LoginUseCase
-import com.example.mvvmhilt.ui.support.Event
-import com.example.mvvmhilt.ui.support.Route
+import com.example.mvvmhilt.presenter.support.Event
+import com.example.mvvmhilt.presenter.support.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

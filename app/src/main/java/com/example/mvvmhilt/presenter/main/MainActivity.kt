@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.ui.main
+package com.example.mvvmhilt.presenter.main
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.example.mvvmhilt.R
-import com.example.mvvmhilt.ui.support.Route
+import com.example.mvvmhilt.presenter.support.Route
 import com.example.mvvmhilt.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

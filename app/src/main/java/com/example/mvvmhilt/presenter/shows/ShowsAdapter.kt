@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.ui.shows
+package com.example.mvvmhilt.presenter.shows
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

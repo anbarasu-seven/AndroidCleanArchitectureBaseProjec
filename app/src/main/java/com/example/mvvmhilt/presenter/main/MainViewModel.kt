@@ -1,10 +1,10 @@
-package com.example.mvvmhilt.ui.main
+package com.example.mvvmhilt.presenter.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mvvmhilt.ui.support.Route
+import com.example.mvvmhilt.presenter.support.Route
 import com.example.mvvmhilt.domain.usecase.LogoutUseCase
 import com.example.mvvmhilt.domain.usecase.VerifyLoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

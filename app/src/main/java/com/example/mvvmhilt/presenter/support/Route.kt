@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.ui.support
+package com.example.mvvmhilt.presenter.support
 
 class Route {
     companion object {

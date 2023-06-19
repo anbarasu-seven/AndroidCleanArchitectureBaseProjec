@@ -2,7 +2,7 @@ package com.example.mvvmhilt.data.repos.tvshow
 
 import com.example.mvvmhilt.data.models.tvshow.TvShow
 import com.example.mvvmhilt.data.models.tvshow.TvShowList
-import com.example.mvvmhilt.data.models.UiState
+import com.example.mvvmhilt.data.models.DataState
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRemoteDatasource
 import com.example.mvvmhilt.data.repos.tvshow.datasource.TvShowRoomDataSource
 import timber.log.Timber
@@ -16,7 +16,7 @@ class ShowsRepositoryImpl @Inject constructor(
 ) : ShowsRepo {
 
     //get tv shows generic
-    override suspend fun getTvShows(): UiState<TvShowList>? = getTvShowsFromAPI()
+    override suspend fun getTvShows(): DataState<TvShowList>? = getTvShowsFromAPI()
 
     //delete local data copy of tv shows
     override suspend fun deleteShows(): Unit {
@@ -24,7 +24,7 @@ class ShowsRepositoryImpl @Inject constructor(
     }
 
     //retrieve shows from remote data source
-    suspend fun getTvShowsFromAPI(): UiState<TvShowList> {
+    suspend fun getTvShowsFromAPI(): DataState<TvShowList> {
         val results = tvShowRemoteDatasource.getTvShows()
         results.let {
             it.data?.let { list ->
@@ -36,14 +36,14 @@ class ShowsRepositoryImpl @Inject constructor(
     }
 
     //retrieve shows from remote data source, if internet is not available
-    suspend fun getTvShowsFromDB(): UiState<TvShowList> {
+    suspend fun getTvShowsFromDB(): DataState<TvShowList> {
         lateinit var tvShowsList: List<TvShow>
         try {
             tvShowsList = tvShowLocalDataSource.getTvShowsFromDB()
         } catch (exception: Exception) {
             Timber.tag("MyTag").i(exception.message.toString())
         }
-        return UiState.Success(TvShowList(tvShowsList))
+        return DataState.Success(TvShowList(tvShowsList))
     }
 
 }

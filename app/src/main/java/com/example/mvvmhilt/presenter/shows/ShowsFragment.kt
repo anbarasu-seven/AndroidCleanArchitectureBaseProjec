@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.ui.shows
+package com.example.mvvmhilt.presenter.shows
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,9 @@ import com.example.mvvmhilt.R
 import com.example.mvvmhilt.common.utils.extn.hide
 import com.example.mvvmhilt.common.utils.extn.show
 import com.example.mvvmhilt.common.utils.extn.showToast
-import com.example.mvvmhilt.data.models.UiState
 import com.example.mvvmhilt.databinding.ShowsFragmentBinding
-import com.example.mvvmhilt.ui.main.MainViewModel
+import com.example.mvvmhilt.domain.dto.UIState
+import com.example.mvvmhilt.presenter.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -62,11 +62,11 @@ class ShowsFragment : Fragment(R.layout.shows_fragment) {
         showsViewModel.tvShows.observe(viewLifecycleOwner) {
             if (it != null) {
                 when (it) {
-                    is UiState.Loading -> {
+                    is UIState.Loading -> {
                         //show progress bar
                         binding.tvProgressBar.show()
                     }
-                    is UiState.Success -> {
+                    is UIState.Success -> {
                         it.data?.let { result ->
                             showsAdapter.apply {
                                 setList(result.tvShows)
@@ -75,7 +75,7 @@ class ShowsFragment : Fragment(R.layout.shows_fragment) {
                         }
                         binding.tvProgressBar.hide()
                     }
-                    is UiState.Error -> {
+                    is UIState.Error -> {
                         binding.tvProgressBar.hide()
                         it.message?.let { it1 -> showToast(it1) }
                     }

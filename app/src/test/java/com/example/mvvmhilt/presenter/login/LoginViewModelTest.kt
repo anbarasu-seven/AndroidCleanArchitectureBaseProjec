@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.ui.login
+package com.example.mvvmhilt.presenter.login
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.mvvmhilt.MainCoroutineRule

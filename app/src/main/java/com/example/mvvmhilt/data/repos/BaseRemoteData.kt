@@ -2,7 +2,7 @@ package com.example.mvvmhilt.data.repos
 
 
 import com.example.mvvmhilt.data.models.ErrorResponse
-import com.example.mvvmhilt.data.models.UiState
+import com.example.mvvmhilt.data.models.DataState
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -13,27 +13,27 @@ import retrofit2.Response
 
 abstract class BaseRemoteData {
 
-    suspend fun <T> safeApiCall(apiToBeCalled: suspend () -> Response<T>): UiState<T> {
+    suspend fun <T> safeApiCall(apiToBeCalled: suspend () -> Response<T>): DataState<T> {
         return withContext(Dispatchers.IO) {
             try {
                 val response: Response<T> = apiToBeCalled.invoke()
                 if (!response.isSuccessful) {
                     val errorResponse: ErrorResponse? = convertErrorBody(response.errorBody())
-                    return@withContext UiState.Error(
+                    return@withContext DataState.Error(
                         message = errorResponse?.failureMessage ?: "Something went wrong"
                     )
                 }
 
                 response.body()?.let {
-                    UiState.Success(data = it)
-                } ?: UiState.Error(message = "Something went wrong")
+                    DataState.Success(data = it)
+                } ?: DataState.Error(message = "Something went wrong")
 
             } catch (e: HttpException) {
-                UiState.Error(message = e.message ?: "Something went wrong")
+                DataState.Error(message = e.message ?: "Something went wrong")
             } catch (e: IOException) {
-                UiState.Error("Please check your network connection")
+                DataState.Error("Please check your network connection")
             } catch (e: Exception) {
-                UiState.Error(message = "Something went wrong")
+                DataState.Error(message = "Something went wrong")
             }
         }
     }

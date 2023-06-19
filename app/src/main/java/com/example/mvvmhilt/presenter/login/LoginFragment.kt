@@ -1,4 +1,4 @@
-package com.example.mvvmhilt.ui.login
+package com.example.mvvmhilt.presenter.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.example.mvvmhilt.R
 import com.example.mvvmhilt.common.utils.extn.hideKeyboard
 import com.example.mvvmhilt.common.utils.extn.showSnackbar
 import com.example.mvvmhilt.databinding.LoginFragmentBinding
-import com.example.mvvmhilt.ui.main.MainViewModel
+import com.example.mvvmhilt.presenter.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
